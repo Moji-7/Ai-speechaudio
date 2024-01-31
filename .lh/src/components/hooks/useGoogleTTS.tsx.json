@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/components/hooks/useGoogleTTS.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1706613981906,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1706613981906,
+            "name": "Commit-0",
+            "content": "// Import the libraries\r\nimport React, { useState } from 'react';\r\nimport { TextToSpeechClient } from '@google-cloud/text-to-speech';\r\nimport { useSpeechSynthesis } from 'react-speech-kit';\r\n\r\n// Create a new instance of the TextToSpeechClient\r\nconst client = new TextToSpeechClient({\r\n  // Replace with your Google Cloud credentials\r\n  projectId: 'your-project-id',\r\n  keyFilename: 'your-key-file.json',\r\n});\r\n\r\n// Define a custom hook that takes a SSML text as an input\r\nconst useGoogleTTS = (ssml) => {\r\n  // Use the useSpeechSynthesis hook\r\n  const { speak, cancel, speaking, supported } = useSpeechSynthesis();\r\n\r\n  // Define a function that calls the TextToSpeechClient's synthesizeSpeech method\r\n  const synthesizeSpeech = async (ssml) => {\r\n    // Define the request parameters\r\n    const request = {\r\n      input: { ssml },\r\n      // Replace with your desired voice configuration\r\n      voice: { languageCode: 'en-US', name: 'en-US-Wavenet-A', ssmlGender: 'FEMALE' },\r\n      // Replace with your desired audio configuration\r\n      audioConfig: { audioEncoding: 'MP3', sampleRateHertz: 24000, pitch: 0 },\r\n    };\r\n\r\n    // Call the synthesizeSpeech method and return the audio content buffer\r\n    const [response] = await client.synthesizeSpeech(request);\r\n    return response.audioContent;\r\n  };\r\n\r\n  // Define a function that plays the audio content buffer using the speak method\r\n  const playSpeech = async (ssml) => {\r\n    // Get the audio content buffer from the synthesizeSpeech function\r\n    const audioContent = await synthesizeSpeech(ssml);\r\n\r\n    // Convert the buffer to a blob\r\n    const blob = new Blob([audioContent], { type: 'audio/mp3' });\r\n\r\n    // Convert the blob to a URL\r\n    const url = URL.createObjectURL(blob);\r\n\r\n    // Play the URL using the speak method\r\n    speak({ text: url });\r\n  };\r\n\r\n  // Return the custom hook's methods and state\r\n  return { playSpeech, cancel, speaking, supported };\r\n};\r\n\r\n// Export the custom hook\r\nexport default useGoogleTTS;\r\n"
+        }
+    ]
+}

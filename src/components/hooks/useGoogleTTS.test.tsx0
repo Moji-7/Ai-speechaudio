@@ -1,0 +1,72 @@
+// Import the libraries
+import { renderHook } from '@testing-library/react-hooks';
+import { TextToSpeechClient } from '@google-cloud/text-to-speech';
+import useGoogleTTS from './useGoogleTTS.tsx0';
+
+// Mock the entire @google-cloud/text-to-speech module with a factory function
+jest.mock('@google-cloud/text-to-speech', () => {
+  // Return the mock module object
+  return {
+    // Define the mock TextToSpeechClient export
+    TextToSpeechClient: jest.fn(() => {
+      // Return the mock instance
+      return {
+        // Mock the synthesizeSpeech method or any other methods you want to test
+        synthesizeSpeech: jest.fn(() => {
+          // Return a mock audio content buffer or a mock error
+          return Promise.resolve([{
+            audioContent: Buffer.from('mock-audio-content'),
+          }]);
+        }),
+      };
+    }),
+  };
+});
+
+// Define a mock SSML text
+const mockSSML = '<speak>Hello, this is a mock SSML text.</speak>';
+
+// Write the test code
+test('plays and cancels speech from SSML text', async () => {
+  // Test the useGoogleTTS hook with the mock SSML text
+  const { result, waitFor, waitForNextUpdate } = renderHook(() => useGoogleTTS(mockSSML));
+
+  // Expect the speaking and supported values to be false initially
+  expect(result.current.speaking).toBe(false);
+  expect(result.current.supported).toBe(false);
+
+  // Call the playSpeech method with the mock SSML text
+  result.current.playSpeech(mockSSML);
+
+  // Wait for the next update of the hook
+  await waitForNextUpdate();
+
+  // Expect the speaking and supported values to be true after playing the speech
+  expect(result.current.speaking).toBe(true);
+  expect(result.current.supported).toBe(true);
+
+  // Expect the TextToSpeechClient constructor to be called with the credentials
+  expect(TextToSpeechClient).toHaveBeenCalledWith({
+    // Replace with your Google Cloud credentials
+    projectId: 'your-project-id',
+    keyFilename: 'your-key-file.json',
+  });
+
+  // Expect the synthesizeSpeech method to be called with the mock SSML text
+  expect(TextToSpeechClient.prototype.synthesizeSpeech).toHaveBeenCalledWith({
+    input: { ssml: mockSSML },
+    // Replace with your desired voice configuration
+    voice: { languageCode: 'en-US', name: 'en-US-Wavenet-A', ssmlGender: 'FEMALE' },
+    // Replace with your desired audio configuration
+    audioConfig: { audioEncoding: 'MP3', sampleRateHertz: 24000, pitch: 0 },
+  });
+
+  // Call the cancel method to stop the speech
+  result.current.cancel();
+
+  // Wait for the cancel method to take effect
+  await waitFor(() => result.current.speaking === false);
+
+  // Expect the speaking value to be false after canceling the speech
+  expect(result.current.speaking).toBe(false);
+});

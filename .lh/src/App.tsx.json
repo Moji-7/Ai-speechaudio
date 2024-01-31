@@ -1,0 +1,42 @@
+{
+    "sourceFile": "src/App.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1706600626616,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1706600859351,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,21 @@\n import React from 'react';\n import logo from './logo.svg';\n import './App.css';\n import GetText from './components/GetText';\n+import { QueryClientProvider } from '@tanstack/react-query';\n \n+\n+const queryClient = new QueryClient();\n function App() {\n   return (\n+    <QueryClientProvider client={queryClient}>\n     <div className=\"App\">\n       <header className=\"App-header\">\n       <GetText/>\n       </header>\n     </div>\n+    </QueryClientProvider>\n   );\n }\n \n export default App;\n"
+                },
+                {
+                    "date": 1706600864512,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import React from 'react';\n import logo from './logo.svg';\n import './App.css';\n import GetText from './components/GetText';\n-import { QueryClientProvider } from '@tanstack/react-query';\n+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';\n \n \n const queryClient = new QueryClient();\n function App() {\n"
+                },
+                {
+                    "date": 1706679159821,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,17 +2,18 @@\n import logo from './logo.svg';\n import './App.css';\n import GetText from './components/GetText';\n import { QueryClient, QueryClientProvider } from '@tanstack/react-query';\n+import LoadMore from './components/LoadMore';\n \n \n const queryClient = new QueryClient();\n function App() {\n   return (\n     <QueryClientProvider client={queryClient}>\n     <div className=\"App\">\n       <header className=\"App-header\">\n-      <GetText/>\n+      <LoadMore/>\n       </header>\n     </div>\n     </QueryClientProvider>\n   );\n"
+                },
+                {
+                    "date": 1706680148541,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,9 @@\n   return (\n     <QueryClientProvider client={queryClient}>\n     <div className=\"App\">\n       <header className=\"App-header\">\n+      {/* <GetText/> */}\n       <LoadMore/>\n       </header>\n     </div>\n     </QueryClientProvider>\n"
+                },
+                {
+                    "date": 1706680166888,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n   return (\n     <QueryClientProvider client={queryClient}>\n     <div className=\"App\">\n       <header className=\"App-header\">\n-      {/* <GetText/> */}\n+      <GetText/>\n       <LoadMore/>\n       </header>\n     </div>\n     </QueryClientProvider>\n"
+                },
+                {
+                    "date": 1706684379330,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n     <QueryClientProvider client={queryClient}>\n     <div className=\"App\">\n       <header className=\"App-header\">\n       <GetText/>\n-      <LoadMore/>\n+      {/* <LoadMore/> */}\n       </header>\n     </div>\n     </QueryClientProvider>\n   );\n"
+                }
+            ],
+            "date": 1706600626616,
+            "name": "Commit-0",
+            "content": "import React from 'react';\nimport logo from './logo.svg';\nimport './App.css';\nimport GetText from './components/GetText';\n\nfunction App() {\n  return (\n    <div className=\"App\">\n      <header className=\"App-header\">\n      <GetText/>\n      </header>\n    </div>\n  );\n}\n\nexport default App;\n"
+        }
+    ]
+}

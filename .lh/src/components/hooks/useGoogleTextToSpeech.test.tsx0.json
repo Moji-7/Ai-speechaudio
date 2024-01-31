@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/components/hooks/useGoogleTextToSpeech.test.tsx0",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1706618719929,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1706618719929,
+            "name": "Commit-0",
+            "content": "import { renderHook } from \"@testing-library/react-hooks\";\r\nimport {useGoogleTextToSpeech} from \"./useGoogleTextToSpeech.tsx0\";\r\n\r\ndescribe(\"useGoogleTextToSpeech\", () => {\r\n  // Test case: convert a SSML text into speech\r\n  it(\"should convert a SSML text into speech\", async () => { // add async keyword\r\n    // Arrange\r\n    const ssmlText = \"<speak>Hello, this is a test.</speak>\";\r\n    const apiKey = \"1234567890\";\r\n\r\n\r\n    // Mock the fetch method and return a mock response with the audio data\r\n    jest.spyOn(global, 'fetch').mockImplementation(() => { // use jest.spyOn instead of jest.mock\r\n      return Promise.resolve({\r\n        ok: true,\r\n        json: () => {\r\n          return Promise.resolve({\r\n            audioContent: \"mocked_audio_data\",\r\n          });\r\n        },\r\n      });\r\n    });\r\n\r\n\r\n    // Act\r\n    const { result, waitForNextUpdate } = renderHook(() => useGoogleTextToSpeech(ssmlText,apiKey));\r\n    await waitForNextUpdate(); // wait for the hook to finish fetching the data\r\n\r\n    // Assert\r\n    expect(result.current[0]).toBe(\"mocked_audio_data\"); // use toBe instead of toEqual\r\n    expect(result.current[1]).toBe(false);\r\n    expect(result.current[2]).toBe(false);\r\n\r\n    // Restore the original implementations\r\n    jest.restoreAllMocks(); // restore the original implementations after each test\r\n  });\r\n});\r\n"
+        }
+    ]
+}

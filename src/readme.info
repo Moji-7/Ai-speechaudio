@@ -1,0 +1,12 @@
+Coding Task: React App with SSML
+In this task, you will build a React app that uses SSML (Speech Synthesis Markup Language) to generate speech from text. SSML is a standard way to control the pronunciation, intonation, and other aspects of speech synthesis. You can learn more about SSML from the Google Cloud Text-to-Speech documentation.
+
+Your app should have the following features:
+
+Fetch an API that provides some text content, such as news articles, blog posts, or stories.
+Parse the text content into sentences and add SSML tags to modify the speech output. For example, you can use the <break> tag to insert pauses, the <emphasis> tag to stress certain words, or the <say-as> tag to change how numbers or dates are pronounced.
+Set up a speech engine or build a custom hook that uses the Google Cloud Text-to-Speech API to convert the SSML text into speech. You will need to create a Google Cloud account and enable the Text-to-Speech API to get an API key.
+Create a UI that allows the user to play, pause, and load more content. You can use the react-speech-kit library to simplify the UI and speech functionality.
+This is an assignment in both React and TypeScript. You should use TypeScript to type your props, hooks, and components. You should also follow the [React TypeScript Cheatsheet] for best practices and tips.
+
+There are tests already created and we will be running them to evaluate your solution. Good luck! 🍀

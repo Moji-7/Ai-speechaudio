@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/components/hooks/useAddSSMLTags.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1706607268181,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1706607268181,
+            "name": "Commit-0",
+            "content": "import { useState, useEffect } from \"react\";\r\n\r\n// Define the type for the sentence object\r\ntype Sentence = {\r\n  id: number;\r\n  text: string;\r\n};\r\n\r\n// Define the type for the SSML tag object\r\ntype SSMLTag = {\r\n  name: string;\r\n  value: string;\r\n};\r\n\r\nexport const useAddSSMLTags = (\r\n  sentences: Sentence[],\r\n  ssmlTags: SSMLTag[]\r\n): string[] => {\r\n  // Use state to store the sentences and the SSML tags\r\n  const [sentencesWithSSML, setSentencesWithSSML] = useState<string[]>([]);\r\n\r\n  // Use useEffect to update the sentences with the SSML tags\r\n  useEffect(() => {\r\n    // Define a function to add SSML tags to a sentence\r\n    const addSSMLTags = (sentence: string, ssmlTags: SSMLTag[]): string => {\r\n      // Loop through the SSML tags array\r\n      for (let i = 0; i < ssmlTags.length; i++) {\r\n        // Get the current SSML tag name and value\r\n        const { name, value } = ssmlTags[i];\r\n        // Use a switch statement to handle different SSML tag names and values\r\n        switch (name) {\r\n          case \"break\":\r\n            // Add a break tag with the specified time value\r\n            sentence = `<break time=\"${value}\" />${sentence}`;\r\n            break;\r\n          case \"emphasis\":\r\n            // Add an emphasis tag with the specified level value\r\n            sentence = `<emphasis level=\"${value}\">${sentence}</emphasis>`;\r\n            break;\r\n          case \"say-as\":\r\n            sentence = `<say-as interpret-as=\"${value}\">${sentence}</say-as>`;\r\n            break;\r\n          default:\r\n            break;\r\n        }\r\n      }\r\n      // Return the sentence with the SSML tags\r\n      return sentence;\r\n    };\r\n\r\n    // Initialize an empty array to store the sentences with the SSML tags\r\n    const sentencesWithSSML: string[] = [];\r\n    // Loop through the sentences array\r\n    for (let i = 0; i < sentences.length; i++) {\r\n      // Get the current sentence object\r\n      const { id, text } = sentences[i];\r\n      // Add SSML tags to the sentence text\r\n      const sentenceWithSSML = addSSMLTags(text, ssmlTags);\r\n      // Push the sentence with the SSML tags to the array\r\n      sentencesWithSSML.push(sentenceWithSSML);\r\n    }\r\n    // Set the state with the sentences with the SSML tags\r\n    setSentencesWithSSML(sentencesWithSSML);\r\n  }, [sentences, ssmlTags]);\r\n\r\n  // Return the sentences with the SSML tags as an array of strings\r\n  return sentencesWithSSML;\r\n};\r\n"
+        }
+    ]
+}

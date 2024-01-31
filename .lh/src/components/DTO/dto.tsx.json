@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/components/DTO/dto.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1706690451649,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1706691294360,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,11 @@\n-type TextContent = {\r\n+export type TextContent = {\r\n     id: number;\r\n     title: string;\r\n     content: string;\r\n   };\r\n   \r\n   // Define the type for the sentence object\r\n-  type Sentence = {\r\n+  export type Sentence = {\r\n     id: number;\r\n     text: string;\r\n   };\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1706690451649,
+            "name": "Commit-0",
+            "content": "type TextContent = {\r\n    id: number;\r\n    title: string;\r\n    content: string;\r\n  };\r\n  \r\n  // Define the type for the sentence object\r\n  type Sentence = {\r\n    id: number;\r\n    text: string;\r\n  };"
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/components/hooks/addSSMLTags.test.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1706607268143,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1706607344415,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n // src/addSSMLTags.test.js\r\n import { renderHook } from \"@testing-library/react-hooks\";\r\n-import addSSMLTags from \"./addSSMLTags\";\r\n+import {useAddSSMLTags} from \"./useAddSSMLTags\";\r\n \r\n describe(\"addSSMLTags\", () => {\r\n   // Test case: add a break tag with 500ms to a sentence\r\n   it(\"should add a break tag with 500ms to a sentence\", () => {\r\n@@ -14,9 +14,9 @@\n       { name: \"break\", value: \"500ms\" },\r\n     ];\r\n \r\n     // Act\r\n-    const { result } = renderHook(() => addSSMLTags(sentences, ssmlTags));\r\n+    const { result } = renderHook(() => useAddSSMLTags(sentences, ssmlTags));\r\n \r\n     // Assert\r\n     expect(result.current).toEqual([\r\n       \"<break time=\\\"500ms\\\" />Hello\",\r\n"
+                }
+            ],
+            "date": 1706607268143,
+            "name": "Commit-0",
+            "content": "// src/addSSMLTags.test.js\r\nimport { renderHook } from \"@testing-library/react-hooks\";\r\nimport addSSMLTags from \"./addSSMLTags\";\r\n\r\ndescribe(\"addSSMLTags\", () => {\r\n  // Test case: add a break tag with 500ms to a sentence\r\n  it(\"should add a break tag with 500ms to a sentence\", () => {\r\n    // Arrange\r\n    const sentences = [\r\n      { id: 1, text: \"Hello\" },\r\n      { id: 2, text: \"World\" },\r\n    ];\r\n    const ssmlTags = [\r\n      { name: \"break\", value: \"500ms\" },\r\n    ];\r\n\r\n    // Act\r\n    const { result } = renderHook(() => addSSMLTags(sentences, ssmlTags));\r\n\r\n    // Assert\r\n    expect(result.current).toEqual([\r\n      \"<break time=\\\"500ms\\\" />Hello\",\r\n      \"<break time=\\\"500ms\\\" />World\",\r\n    ]);\r\n  });\r\n});\r\n"
+        }
+    ]
+}

@@ -1,0 +1,106 @@
+import { useState, useEffect } from "react";
+import { useQuery, UseQueryResult } from "@tanstack/react-query";
+
+// Define the type for the speech object
+type Speech = {
+  audioContent: string;
+};
+
+export const useGoogleTextToSpeech = (
+  ssmlText: string,
+  apiKey: string
+): [string, boolean, boolean, () => void] => {
+  // Use state to store the URL from the audio data
+  const [url, setUrl] = useState<string>("");
+
+  // Use the useQuery hook to call the Google Cloud Text-to-Speech API with the SSML text as the input
+  const { data, isLoading, isError } = useQuery<Speech, Error>(
+    // Specify the query key as the ssmlText and apiKey
+    ["useGoogleTextToSpeech", ssmlText, apiKey],
+    async () => {
+      // Define the API endpoint
+      const endpoint = `https://texttospeech.googleapis.com/v1/text:synthesize?key=${apiKey}`;
+
+      // Define the request body
+      const body = {
+        input: {
+          ssml: ssmlText,
+        },
+        voice: {
+          languageCode: "en-US",
+          name: "en-US-Wavenet-A",
+        },
+        audioConfig: {
+          audioEncoding: "MP3",
+        },
+      };
+      const headers = {
+        "Content-Type": "application/json",
+      };
+
+      try {
+        const response = await fetch(endpoint, {
+          method: "POST",
+          headers: headers,
+          body: JSON.stringify(body),
+        });
+
+        // Check if the response is ok
+        if (response.ok) {
+          // Parse the response data as JSON and return it
+          const data: Speech = await response.json();
+          return data;
+        } else {
+          // Throw an error object with the status and message
+          throw new Error(
+            `Request failed: ${response.status} ${response.statusText}`
+          );
+        }
+      } catch (error) {
+        // Handle the errors that may occur while making the request
+        // Check if the error is an instance of Error
+        if (error instanceof Error) {
+          // Throw the error object
+          throw error;
+        } else {
+          // Throw a generic error object
+          throw { status: 500, message: "Something went wrong" };
+        }
+      }
+    }
+  );
+
+  // Use useEffect to create a URL from the audio data and store it in the state
+  useEffect(() => {
+    // Check if the data object is not undefined
+    if (data) {
+      // Get the audio content from the data object
+      const {audioContent}  = data;
+      // Convert the base64-encoded audio data to a blob
+      const byteCharacters = atob(audioContent);
+      const byteNumbers = new Array(byteCharacters.length);
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      const blob = new Blob([byteArray], { type: "audio/mpeg" });
+
+      // Create a URL from the blob and store it in the state
+      const url = URL.createObjectURL(blob);
+      setUrl(url);
+    }
+  }, [data]);
+
+  // Define a function to revoke the URL
+  const revokeURL = () => {
+    // Check if the URL is not empty
+    if (url) {
+      // Revoke the URL and set the state to empty
+      URL.revokeObjectURL(url);
+      setUrl("");
+    }
+  };
+
+  // Return the URL, the loading and error states, and the revokeURL function
+  return [url, isLoading, isError, revokeURL];
+};

@@ -1,0 +1,142 @@
+{
+    "sourceFile": "src/components/LoadMore.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 31,
+            "patches": [
+                {
+                    "date": 1706679131103,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1706680342605,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n \r\n \r\n async function fetchProjects(page = 0) {\r\n     try {\r\n-        const url = \"http://localhost:3222/incredibles/page-\" + page;\r\n+        const url = \"/api/projects?page=' + page)\" + page;\r\n         const response = await fetch(url, {\r\n             method: \"GET\",\r\n             headers: {\r\n                 \"Content-Type\": \"application/x-www-form-urlencoded; charset=UTF-8\",\r\n"
+                },
+                {
+                    "date": 1706680572141,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,5 @@\n+import { useQuery, useQueryClient ,keepPreviousData} from '@tanstack/react-query';\r\n import React from 'react'\r\n \r\n \r\n async function fetchProjects(page = 0) {\r\n@@ -19,8 +20,17 @@\n     } catch (error) {\r\n         throw error;\r\n     }\r\n }\r\n+const queryClient = useQueryClient()\r\n+const [page, setPage] = React.useState(0)\r\n+\r\n+const { status, data, error, isFetching, isPlaceholderData } = useQuery({\r\n+  queryKey: ['projects', page],\r\n+  queryFn: () => fetchProjects(page),\r\n+  placeholderData: keepPreviousData,\r\n+  staleTime: 5000,\r\n+})\r\n function LoadMore() {\r\n     return (\r\n         <>\r\n             LoadMore\r\n"
+                },
+                {
+                    "date": 1706680594530,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,8 +20,12 @@\n     } catch (error) {\r\n         throw error;\r\n     }\r\n }\r\n+\r\n+function LoadMore() {\r\n+\r\n+\r\n const queryClient = useQueryClient()\r\n const [page, setPage] = React.useState(0)\r\n \r\n const { status, data, error, isFetching, isPlaceholderData } = useQuery({\r\n@@ -29,9 +33,9 @@\n   queryFn: () => fetchProjects(page),\r\n   placeholderData: keepPreviousData,\r\n   staleTime: 5000,\r\n })\r\n-function LoadMore() {\r\n+\r\n     return (\r\n         <>\r\n             LoadMore\r\n         </>\r\n"
+                },
+                {
+                    "date": 1706680644099,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,36 @@\n })\r\n \r\n     return (\r\n         <>\r\n-            LoadMore\r\n+             {status === 'pending' ? (\r\n+        <div>Loading...</div>\r\n+      ) : status === 'error' ? (\r\n+        <div>Error: {error.message}</div>\r\n+      ) : (\r\n+        // `data` will either resolve to the latest page's data\r\n+        // or if fetching a new page, the last successful page's data\r\n+        <div>\r\n+          {data.projects.map((project) => (\r\n+            <p key={project.id}>{project.name}</p>\r\n+          ))}\r\n+        </div>\r\n+      )}\r\n+      <div>Current Page: {page + 1}</div>\r\n+      <button\r\n+        onClick={() => setPage((old) => Math.max(old - 1, 0))}\r\n+        disabled={page === 0}\r\n+      >\r\n+        Previous Page\r\n+      </button>{' '}\r\n+      <button\r\n+        onClick={() => {\r\n+          setPage((old) => (data?.hasMore ? old + 1 : old))\r\n+        }}\r\n+        disabled={isPlaceholderData || !data?.hasMore}\r\n+      >\r\n+        Next Page\r\n+      </button>\r\n         </>\r\n     )\r\n }\r\n \r\n"
+                },
+                {
+                    "date": 1706680657071,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,9 @@\n       ) : (\r\n         // `data` will either resolve to the latest page's data\r\n         // or if fetching a new page, the last successful page's data\r\n         <div>\r\n-          {data.projects.map((project) => (\r\n+          {data.projects.map((project:any) => (\r\n             <p key={project.id}>{project.name}</p>\r\n           ))}\r\n         </div>\r\n       )}\r\n"
+                },
+                {
+                    "date": 1706680771520,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,11 @@\n-import { useQuery, useQueryClient ,keepPreviousData} from '@tanstack/react-query';\r\n+import { useQuery, useQueryClient, keepPreviousData } from '@tanstack/react-query';\r\n import React from 'react'\r\n \r\n \r\n async function fetchProjects(page = 0) {\r\n     try {\r\n-        const url = \"/api/projects?page=' + page)\" + page;\r\n+        const url = \"http://localhost:3222/incredibles/?page=' + page)\" + page;\r\n         const response = await fetch(url, {\r\n             method: \"GET\",\r\n             headers: {\r\n                 \"Content-Type\": \"application/x-www-form-urlencoded; charset=UTF-8\",\r\n@@ -24,48 +24,48 @@\n \r\n function LoadMore() {\r\n \r\n \r\n-const queryClient = useQueryClient()\r\n-const [page, setPage] = React.useState(0)\r\n+    const queryClient = useQueryClient()\r\n+    const [page, setPage] = React.useState(0)\r\n \r\n-const { status, data, error, isFetching, isPlaceholderData } = useQuery({\r\n-  queryKey: ['projects', page],\r\n-  queryFn: () => fetchProjects(page),\r\n-  placeholderData: keepPreviousData,\r\n-  staleTime: 5000,\r\n-})\r\n+    const { status, data, error, isFetching, isPlaceholderData } = useQuery({\r\n+        queryKey: ['projects', page],\r\n+        queryFn: () => fetchProjects(page),\r\n+        placeholderData: keepPreviousData,\r\n+        staleTime: 5000,\r\n+    })\r\n \r\n     return (\r\n         <>\r\n-             {status === 'pending' ? (\r\n-        <div>Loading...</div>\r\n-      ) : status === 'error' ? (\r\n-        <div>Error: {error.message}</div>\r\n-      ) : (\r\n-        // `data` will either resolve to the latest page's data\r\n-        // or if fetching a new page, the last successful page's data\r\n-        <div>\r\n-          {data.projects.map((project:any) => (\r\n-            <p key={project.id}>{project.name}</p>\r\n-          ))}\r\n-        </div>\r\n-      )}\r\n-      <div>Current Page: {page + 1}</div>\r\n-      <button\r\n-        onClick={() => setPage((old) => Math.max(old - 1, 0))}\r\n-        disabled={page === 0}\r\n-      >\r\n-        Previous Page\r\n-      </button>{' '}\r\n-      <button\r\n-        onClick={() => {\r\n-          setPage((old) => (data?.hasMore ? old + 1 : old))\r\n-        }}\r\n-        disabled={isPlaceholderData || !data?.hasMore}\r\n-      >\r\n-        Next Page\r\n-      </button>\r\n+            {status === 'pending' ? (\r\n+                <div>Loading...</div>\r\n+            ) : status === 'error' ? (\r\n+                <div>Error: {error.message}</div>\r\n+            ) : (\r\n+                // `data` will either resolve to the latest page's data\r\n+                // or if fetching a new page, the last successful page's data\r\n+                <div>\r\n+                    {data.projects.map((project: any) => (\r\n+                        <p key={project.id}>{project.name}</p>\r\n+                    ))}\r\n+                </div>\r\n+            )}\r\n+            <div>Current Page: {page + 1}</div>\r\n+            <button\r\n+                onClick={() => setPage((old) => Math.max(old - 1, 0))}\r\n+                disabled={page === 0}\r\n+            >\r\n+                Previous Page\r\n+            </button>{' '}\r\n+            <button\r\n+                onClick={() => {\r\n+                    setPage((old) => (data?.hasMore ? old + 1 : old))\r\n+                }}\r\n+                disabled={isPlaceholderData || !data?.hasMore}\r\n+            >\r\n+                Next Page\r\n+            </button>\r\n         </>\r\n     )\r\n }\r\n \r\n"
+                },
+                {
+                    "date": 1706680789998,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,9 @@\n                 // `data` will either resolve to the latest page's data\r\n                 // or if fetching a new page, the last successful page's data\r\n                 <div>\r\n                     {data.projects.map((project: any) => (\r\n-                        <p key={project.id}>{project.name}</p>\r\n+                        <p key={project.id}>{project.title_en}</p>\r\n                     ))}\r\n                 </div>\r\n             )}\r\n             <div>Current Page: {page + 1}</div>\r\n"
+                },
+                {
+                    "date": 1706680841854,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n \r\n \r\n async function fetchProjects(page = 0) {\r\n     try {\r\n-        const url = \"http://localhost:3222/incredibles/?page=' + page)\" + page;\r\n+        const url = \"http://localhost:3222/incredibles/all/?page=' + page)\" + page;\r\n         const response = await fetch(url, {\r\n             method: \"GET\",\r\n             headers: {\r\n                 \"Content-Type\": \"application/x-www-form-urlencoded; charset=UTF-8\",\r\n"
+                },
+                {
+                    "date": 1706680870411,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,9 @@\n             ) : (\r\n                 // `data` will either resolve to the latest page's data\r\n                 // or if fetching a new page, the last successful page's data\r\n                 <div>\r\n-                    {data.projects.map((project: any) => (\r\n+                    {data.map((project: any) => (\r\n                         <p key={project.id}>{project.title_en}</p>\r\n                     ))}\r\n                 </div>\r\n             )}\r\n"
+                },
+                {
+                    "date": 1706681510415,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,8 +34,18 @@\n         placeholderData: keepPreviousData,\r\n         staleTime: 5000,\r\n     })\r\n \r\n+      // Prefetch the next page!\r\n+  React.useEffect(() => {\r\n+    if (!isPlaceholderData && data?.hasMore) {\r\n+      queryClient.prefetchQuery({\r\n+        queryKey: ['projects', page + 1],\r\n+        queryFn: () => fetchProjects(page + 1),\r\n+      })\r\n+    }\r\n+  }, [data, isPlaceholderData, page, queryClient])\r\n+\r\n     return (\r\n         <>\r\n             {status === 'pending' ? (\r\n                 <div>Loading...</div>\r\n"
+                },
+                {
+                    "date": 1706681699348,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,8 +36,9 @@\n     })\r\n \r\n       // Prefetch the next page!\r\n   React.useEffect(() => {\r\n+    console.log(\"ali\")\r\n     if (!isPlaceholderData && data?.hasMore) {\r\n       queryClient.prefetchQuery({\r\n         queryKey: ['projects', page + 1],\r\n         queryFn: () => fetchProjects(page + 1),\r\n"
+                },
+                {
+                    "date": 1706681765377,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -69,9 +69,9 @@\n                 Previous Page\r\n             </button>{' '}\r\n             <button\r\n                 onClick={() => {\r\n-                    setPage((old) => (data?.hasMore ? old + 1 : old))\r\n+                    setPage((old) => ( old + 1 ))\r\n                 }}\r\n                 disabled={isPlaceholderData || !data?.hasMore}\r\n             >\r\n                 Next Page\r\n"
+                },
+                {
+                    "date": 1706681805458,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,9 +63,9 @@\n             )}\r\n             <div>Current Page: {page + 1}</div>\r\n             <button\r\n                 onClick={() => setPage((old) => Math.max(old - 1, 0))}\r\n-                disabled={page === 0}\r\n+                // disabled={page === 0}\r\n             >\r\n                 Previous Page\r\n             </button>{' '}\r\n             <button\r\n"
+                },
+                {
+                    "date": 1706681827217,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -71,9 +71,9 @@\n             <button\r\n                 onClick={() => {\r\n                     setPage((old) => ( old + 1 ))\r\n                 }}\r\n-                disabled={isPlaceholderData || !data?.hasMore}\r\n+                // disabled={isPlaceholderData || !data?.hasMore}\r\n             >\r\n                 Next Page\r\n             </button>\r\n         </>\r\n"
+                },
+                {
+                    "date": 1706681919895,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,9 +63,9 @@\n             )}\r\n             <div>Current Page: {page + 1}</div>\r\n             <button\r\n                 onClick={() => setPage((old) => Math.max(old - 1, 0))}\r\n-                // disabled={page === 0}\r\n+                disabled={page === 0}\r\n             >\r\n                 Previous Page\r\n             </button>{' '}\r\n             <button\r\n"
+                },
+                {
+                    "date": 1706682120113,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n \r\n \r\n async function fetchProjects(page = 0) {\r\n     try {\r\n-        const url = \"http://localhost:3222/incredibles/all/?page=' + page)\" + page;\r\n+        const url = \"/api/projects?page=\" + page;\r\n         const response = await fetch(url, {\r\n             method: \"GET\",\r\n             headers: {\r\n                 \"Content-Type\": \"application/x-www-form-urlencoded; charset=UTF-8\",\r\n"
+                },
+                {
+                    "date": 1706682431268,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,11 @@\n import { useQuery, useQueryClient, keepPreviousData } from '@tanstack/react-query';\r\n import React from 'react'\r\n \r\n \r\n-async function fetchProjects(page = 0) {\r\n+async function fetchProjects(page = 0, oldData = []) {\r\n     try {\r\n-        const url = \"/api/projects?page=\" + page;\r\n+        const url = \"http://localhost:3222/incredibles/all/?page=\" + page;\r\n         const response = await fetch(url, {\r\n             method: \"GET\",\r\n             headers: {\r\n                 \"Content-Type\": \"application/x-www-form-urlencoded; charset=UTF-8\",\r\n"
+                },
+                {
+                    "date": 1706682444038,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n             throw { status: response.status, message: response.statusText };\r\n         }\r\n         // Parse the response data as JSON and return it\r\n         const data: any = await response.json();\r\n-        return data;\r\n+        return [...oldData, ...data]; // append new data to old data\r\n     } catch (error) {\r\n         throw error;\r\n     }\r\n }\r\n"
+                },
+                {
+                    "date": 1706682463955,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,9 @@\n \r\n       // Prefetch the next page!\r\n   React.useEffect(() => {\r\n     console.log(\"ali\")\r\n-    if (!isPlaceholderData && data?.hasMore) {\r\n+    if (!isPlaceholderData && data?) {\r\n       queryClient.prefetchQuery({\r\n         queryKey: ['projects', page + 1],\r\n         queryFn: () => fetchProjects(page + 1),\r\n       })\r\n"
+                },
+                {
+                    "date": 1706682473196,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,9 @@\n \r\n       // Prefetch the next page!\r\n   React.useEffect(() => {\r\n     console.log(\"ali\")\r\n-    if (!isPlaceholderData && data?) {\r\n+    if (!isPlaceholderData && data?.hasmore) {\r\n       queryClient.prefetchQuery({\r\n         queryKey: ['projects', page + 1],\r\n         queryFn: () => fetchProjects(page + 1),\r\n       })\r\n"
+                },
+                {
+                    "date": 1706682478829,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,9 @@\n \r\n       // Prefetch the next page!\r\n   React.useEffect(() => {\r\n     console.log(\"ali\")\r\n-    if (!isPlaceholderData && data?.hasmore) {\r\n+    if (!isPlaceholderData ) {\r\n       queryClient.prefetchQuery({\r\n         queryKey: ['projects', page + 1],\r\n         queryFn: () => fetchProjects(page + 1),\r\n       })\r\n"
+                },
+                {
+                    "date": 1706682503932,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n     const [page, setPage] = React.useState(0)\r\n \r\n     const { status, data, error, isFetching, isPlaceholderData } = useQuery({\r\n         queryKey: ['projects', page],\r\n-        queryFn: () => fetchProjects(page),\r\n+        queryFn: () => fetchProjects(page,data),\r\n         placeholderData: keepPreviousData,\r\n         staleTime: 5000,\r\n     })\r\n \r\n"
+                },
+                {
+                    "date": 1706682522275,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n     const [page, setPage] = React.useState(0)\r\n \r\n     const { status, data, error, isFetching, isPlaceholderData } = useQuery({\r\n         queryKey: ['projects', page],\r\n-        queryFn: () => fetchProjects(page,data),\r\n+        queryFn: () => fetchProjects(page,data:any[]),\r\n         placeholderData: keepPreviousData,\r\n         staleTime: 5000,\r\n     })\r\n \r\n"
+                },
+                {
+                    "date": 1706682641202,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n     const [page, setPage] = React.useState(0)\r\n \r\n     const { status, data, error, isFetching, isPlaceholderData } = useQuery({\r\n         queryKey: ['projects', page],\r\n-        queryFn: () => fetchProjects(page,data:any[]),\r\n+        queryFn: () => fetchProjects(page,data),\r\n         placeholderData: keepPreviousData,\r\n         staleTime: 5000,\r\n     })\r\n \r\n"
+                },
+                {
+                    "date": 1706683047614,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,10 @@\n import { useQuery, useQueryClient, keepPreviousData } from '@tanstack/react-query';\r\n import React from 'react'\r\n \r\n \r\n-async function fetchProjects(page = 0, oldData = []) {\r\n+ async function fetchProjects(page = 0, oldData: any[] = []): Promise<any[]> {\r\n+\r\n     try {\r\n         const url = \"http://localhost:3222/incredibles/all/?page=\" + page;\r\n         const response = await fetch(url, {\r\n             method: \"GET\",\r\n@@ -27,11 +28,11 @@\n \r\n     const queryClient = useQueryClient()\r\n     const [page, setPage] = React.useState(0)\r\n \r\n-    const { status, data, error, isFetching, isPlaceholderData } = useQuery({\r\n+    const { status, data, error, isFetching, isPlaceholderData } =  useQuery<{ data: any[] }>({\r\n         queryKey: ['projects', page],\r\n-        queryFn: () => fetchProjects(page,data),\r\n+        queryFn: (): Promise<any[]> => fetchProjects(page,data as undefined ),\r\n         placeholderData: keepPreviousData,\r\n         staleTime: 5000,\r\n     })\r\n \r\n"
+                },
+                {
+                    "date": 1706683225136,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { useQuery, useQueryClient, keepPreviousData } from '@tanstack/react-query';\r\n import React from 'react'\r\n \r\n \r\n- async function fetchProjects(page = 0, oldData: any[] = []): Promise<any[]> {\r\n+async function fetchProjects(page = 0, oldData: any[] = []): Promise<{ data: any[] }> {\r\n \r\n     try {\r\n         const url = \"http://localhost:3222/incredibles/all/?page=\" + page;\r\n         const response = await fetch(url, {\r\n@@ -30,9 +30,11 @@\n     const [page, setPage] = React.useState(0)\r\n \r\n     const { status, data, error, isFetching, isPlaceholderData } =  useQuery<{ data: any[] }>({\r\n         queryKey: ['projects', page],\r\n-        queryFn: (): Promise<any[]> => fetchProjects(page,data as undefined ),\r\n+\r\n+        queryFn: (): Promise<{ data: any[] }> => fetchProjects(page, data),\r\n+\r\n         placeholderData: keepPreviousData,\r\n         staleTime: 5000,\r\n     })\r\n \r\n"
+                },
+                {
+                    "date": 1706683239350,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n             throw { status: response.status, message: response.statusText };\r\n         }\r\n         // Parse the response data as JSON and return it\r\n         const data: any = await response.json();\r\n-        return [...oldData, ...data]; // append new data to old data\r\n+        return { data: [...oldData, ...data] }; // wrap data in an object\r\n     } catch (error) {\r\n         throw error;\r\n     }\r\n }\r\n"
+                },
+                {
+                    "date": 1706683263662,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,13 +28,11 @@\n \r\n     const queryClient = useQueryClient()\r\n     const [page, setPage] = React.useState(0)\r\n \r\n-    const { status, data, error, isFetching, isPlaceholderData } =  useQuery<{ data: any[] }>({\r\n+    const { status, data, error, isFetching, isPlaceholderData } = useQuery<{ data: any[] }>({\r\n         queryKey: ['projects', page],\r\n-\r\n-        queryFn: (): Promise<{ data: any[] }> => fetchProjects(page, data),\r\n-\r\n+        queryFn: (): Promise<{ data: any[] }> => fetchProjects(page, data?.data || []), // pass data.data to fetchProjects\r\n         placeholderData: keepPreviousData,\r\n         staleTime: 5000,\r\n     })\r\n \r\n"
+                },
+                {
+                    "date": 1706683537919,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,9 +56,9 @@\n             ) : (\r\n                 // `data` will either resolve to the latest page's data\r\n                 // or if fetching a new page, the last successful page's data\r\n                 <div>\r\n-                    {data.map((project: any) => (\r\n+                    {data.data.map((project: any) => (\r\n                         <p key={project.id}>{project.title_en}</p>\r\n                     ))}\r\n                 </div>\r\n             )}\r\n"
+                },
+                {
+                    "date": 1706683638224,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n     const { status, data, error, isFetching, isPlaceholderData } = useQuery<{ data: any[] }>({\r\n         queryKey: ['projects', page],\r\n         queryFn: (): Promise<{ data: any[] }> => fetchProjects(page, data?.data || []), // pass data.data to fetchProjects\r\n         placeholderData: keepPreviousData,\r\n-        staleTime: 5000,\r\n+        //staleTime: 5000,\r\n     })\r\n \r\n       // Prefetch the next page!\r\n   React.useEffect(() => {\r\n"
+                },
+                {
+                    "date": 1706683699807,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,9 @@\n     })\r\n \r\n       // Prefetch the next page!\r\n   React.useEffect(() => {\r\n-    console.log(\"ali\")\r\n+    console.log(data?.data)\r\n     if (!isPlaceholderData ) {\r\n       queryClient.prefetchQuery({\r\n         queryKey: ['projects', page + 1],\r\n         queryFn: () => fetchProjects(page + 1),\r\n"
+                }
+            ],
+            "date": 1706679131103,
+            "name": "Commit-0",
+            "content": "import React from 'react'\r\n\r\n\r\nasync function fetchProjects(page = 0) {\r\n    try {\r\n        const url = \"http://localhost:3222/incredibles/page-\" + page;\r\n        const response = await fetch(url, {\r\n            method: \"GET\",\r\n            headers: {\r\n                \"Content-Type\": \"application/x-www-form-urlencoded; charset=UTF-8\",\r\n            },\r\n        });\r\n        if (!response.ok) {\r\n            throw { status: response.status, message: response.statusText };\r\n        }\r\n        // Parse the response data as JSON and return it\r\n        const data: any = await response.json();\r\n        return data;\r\n    } catch (error) {\r\n        throw error;\r\n    }\r\n}\r\nfunction LoadMore() {\r\n    return (\r\n        <>\r\n            LoadMore\r\n        </>\r\n    )\r\n}\r\n\r\nexport default LoadMore"
+        }
+    ]
+}

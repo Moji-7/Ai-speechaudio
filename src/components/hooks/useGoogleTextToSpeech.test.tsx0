@@ -1,0 +1,37 @@
+import { renderHook } from "@testing-library/react-hooks";
+import {useGoogleTextToSpeech} from "./useGoogleTextToSpeech.tsx0";
+
+describe("useGoogleTextToSpeech", () => {
+  // Test case: convert a SSML text into speech
+  it("should convert a SSML text into speech", async () => { // add async keyword
+    // Arrange
+    const ssmlText = "<speak>Hello, this is a test.</speak>";
+    const apiKey = "1234567890";
+
+
+    // Mock the fetch method and return a mock response with the audio data
+    jest.spyOn(global, 'fetch').mockImplementation(() => { // use jest.spyOn instead of jest.mock
+      return Promise.resolve({
+        ok: true,
+        json: () => {
+          return Promise.resolve({
+            audioContent: "mocked_audio_data",
+          });
+        },
+      });
+    });
+
+
+    // Act
+    const { result, waitForNextUpdate } = renderHook(() => useGoogleTextToSpeech(ssmlText,apiKey));
+    await waitForNextUpdate(); // wait for the hook to finish fetching the data
+
+    // Assert
+    expect(result.current[0]).toBe("mocked_audio_data"); // use toBe instead of toEqual
+    expect(result.current[1]).toBe(false);
+    expect(result.current[2]).toBe(false);
+
+    // Restore the original implementations
+    jest.restoreAllMocks(); // restore the original implementations after each test
+  });
+});
