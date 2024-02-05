@@ -1,0 +1,78 @@
+{
+    "sourceFile": "src/components/flow/8.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 15,
+            "patches": [
+                {
+                    "date": 1707020277399,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1707020327764,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,10 +2,10 @@\n // import the necessary modules\r\n import React, { useEffect, useState } from 'react';\r\n import createEngine, { DiagramModel } from '@projectstorm/react-diagrams';\r\n import { CanvasWidget } from '@projectstorm/react-canvas-core';\r\n-import { TableFactory } from './TableFactory';\r\n-import { TableModel } from './TableModel';\r\n+import { TableFactory } from './7';\r\n+import { TableModel } from './5';\r\n import { DemoCanvasWidget } from './DemoCanvasWidget';\r\n \r\n const Diagram = () => {\r\n   const [engine, setEngine] = useState(createEngine());\r\n"
+                },
+                {
+                    "date": 1707020486954,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,9 +38,9 @@\n         ['China', 1441, 9597],\r\n         ['India', 1380, 3287],\r\n         ['USA', 331, 9834]\r\n       ],\r\n-      position: { x: 300, y: 150 },\r\n+     // position: { x: 300, y: 150 },\r\n       color: 'lightblue',\r\n       cssClass: 'table',\r\n       size: { width: 200, height: 200 }\r\n     });\r\n"
+                },
+                {
+                    "date": 1707020495438,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n         ['Alice', 25, 'F'],\r\n         ['Bob', 30, 'M'],\r\n         ['Charlie', 35, 'M']\r\n       ],\r\n-      position: { x: 50, y: 150 },\r\n+      //position: { x: 50, y: 150 },\r\n       color: 'pink',\r\n       cssClass: 'table',\r\n       size: { width: 200, height: 200 }\r\n     });\r\n"
+                },
+                {
+                    "date": 1707020688723,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,10 +2,10 @@\n // import the necessary modules\r\n import React, { useEffect, useState } from 'react';\r\n import createEngine, { DiagramModel } from '@projectstorm/react-diagrams';\r\n import { CanvasWidget } from '@projectstorm/react-canvas-core';\r\n-import { TableFactory } from './7';\r\n-import { TableModel } from './5';\r\n+import { TableFactory } from './TableFactory';\r\n+import { TableModel } from './TableModel';\r\n import { DemoCanvasWidget } from './DemoCanvasWidget';\r\n \r\n const Diagram = () => {\r\n   const [engine, setEngine] = useState(createEngine());\r\n@@ -24,9 +24,9 @@\n         ['Alice', 25, 'F'],\r\n         ['Bob', 30, 'M'],\r\n         ['Charlie', 35, 'M']\r\n       ],\r\n-      //position: { x: 50, y: 150 },\r\n+      position: { x: 50, y: 150 },\r\n       color: 'pink',\r\n       cssClass: 'table',\r\n       size: { width: 200, height: 200 }\r\n     });\r\n@@ -38,14 +38,44 @@\n         ['China', 1441, 9597],\r\n         ['India', 1380, 3287],\r\n         ['USA', 331, 9834]\r\n       ],\r\n-     // position: { x: 300, y: 150 },\r\n+      position: { x: 300, y: 150 },\r\n       color: 'lightblue',\r\n       cssClass: 'table',\r\n       size: { width: 200, height: 200 }\r\n     });\r\n \r\n     const table3 = new TableModel({\r\n       name: 'Table 3',\r\n       values: [\r\n\\ No newline at end of file\n-        ['Product', 'Price', 'Quantity'],\n+        ['Product', 'Price', 'Quantity'],\r\n+        ['Apple', 1, 10],\r\n+        ['Banana', 0.5, 20],\r\n+        ['Carrot', 0.2, 30]\r\n+      ],\r\n+      position: { x: 550, y: 150 },\r\n+      color: 'lightgreen',\r\n+      cssClass: 'table',\r\n+      size: { width: 200, height: 200 }\r\n+    });\r\n+\r\n+    model.addAll(table1, table2, table3);\r\n+    engine.setModel(model);\r\n+\r\n+    setEngine(engine);\r\n+    setmodelHadset(true);\r\n+  }, [modelHadset]);\r\n+\r\n+  return (\r\n+    <div style={{ height: '800px', width: '800px' }}>\r\n+      {modelHadset && (\r\n+        <>\r\n+          <DemoCanvasWidget>\r\n+            <CanvasWidget engine={engine} />\r\n+          </DemoCanvasWidget>\r\n+        </>\r\n+      )}\r\n+    </div>\r\n+  );\r\n+};\r\n+export default Diagram;\r\n"
+                },
+                {
+                    "date": 1707020957890,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,10 +2,10 @@\n // import the necessary modules\r\n import React, { useEffect, useState } from 'react';\r\n import createEngine, { DiagramModel } from '@projectstorm/react-diagrams';\r\n import { CanvasWidget } from '@projectstorm/react-canvas-core';\r\n-import { TableFactory } from './TableFactory';\r\n-import { TableModel } from './TableModel';\r\n+import { TableFactory } from './7';\r\n+import { TableModel } from './5';\r\n import { DemoCanvasWidget } from './DemoCanvasWidget';\r\n \r\n const Diagram = () => {\r\n   const [engine, setEngine] = useState(createEngine());\r\n@@ -77,5 +77,5 @@\n       )}\r\n     </div>\r\n   );\r\n };\r\n-export default Diagram;\n\\ No newline at end of file\n+export default Diagram;\r\n"
+                },
+                {
+                    "date": 1707020994433,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n         ['Alice', 25, 'F'],\r\n         ['Bob', 30, 'M'],\r\n         ['Charlie', 35, 'M']\r\n       ],\r\n-      position: { x: 50, y: 150 },\r\n+    //  position: { x: 50, y: 150 },\r\n       color: 'pink',\r\n       cssClass: 'table',\r\n       size: { width: 200, height: 200 }\r\n     });\r\n@@ -38,9 +38,9 @@\n         ['China', 1441, 9597],\r\n         ['India', 1380, 3287],\r\n         ['USA', 331, 9834]\r\n       ],\r\n-      position: { x: 300, y: 150 },\r\n+    //  position: { x: 300, y: 150 },\r\n       color: 'lightblue',\r\n       cssClass: 'table',\r\n       size: { width: 200, height: 200 }\r\n     });\r\n@@ -52,9 +52,9 @@\n         ['Apple', 1, 10],\r\n         ['Banana', 0.5, 20],\r\n         ['Carrot', 0.2, 30]\r\n       ],\r\n-      position: { x: 550, y: 150 },\r\n+     // position: { x: 550, y: 150 },\r\n       color: 'lightgreen',\r\n       cssClass: 'table',\r\n       size: { width: 200, height: 200 }\r\n     });\r\n"
+                },
+                {
+                    "date": 1707024080454,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -71,8 +71,9 @@\n       {modelHadset && (\r\n         <>\r\n           <DemoCanvasWidget>\r\n             <CanvasWidget engine={engine} />\r\n+            <CanvasWidget engine={engine} />\r\n           </DemoCanvasWidget>\r\n         </>\r\n       )}\r\n     </div>\r\n"
+                },
+                {
+                    "date": 1707024156422,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -71,9 +71,9 @@\n       {modelHadset && (\r\n         <>\r\n           <DemoCanvasWidget>\r\n             <CanvasWidget engine={engine} />\r\n-            <CanvasWidget engine={engine} />\r\n+            {/* <CanvasWidget engine={engine} /> */}\r\n           </DemoCanvasWidget>\r\n         </>\r\n       )}\r\n     </div>\r\n"
+                },
+                {
+                    "date": 1707024221286,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -71,9 +71,9 @@\n       {modelHadset && (\r\n         <>\r\n           <DemoCanvasWidget>\r\n             <CanvasWidget engine={engine} />\r\n-            {/* <CanvasWidget engine={engine} /> */}\r\n+            <CanvasWidget engine={engine} />\r\n           </DemoCanvasWidget>\r\n         </>\r\n       )}\r\n     </div>\r\n"
+                },
+                {
+                    "date": 1707024234979,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n import { CanvasWidget } from '@projectstorm/react-canvas-core';\r\n import { TableFactory } from './7';\r\n import { TableModel } from './5';\r\n import { DemoCanvasWidget } from './DemoCanvasWidget';\r\n+import DiagramA from './e';\r\n \r\n const Diagram = () => {\r\n   const [engine, setEngine] = useState(createEngine());\r\n \r\n@@ -71,9 +72,9 @@\n       {modelHadset && (\r\n         <>\r\n           <DemoCanvasWidget>\r\n             <CanvasWidget engine={engine} />\r\n-            <CanvasWidget engine={engine} />\r\n+         <DiagramA/>\r\n           </DemoCanvasWidget>\r\n         </>\r\n       )}\r\n     </div>\r\n"
+                },
+                {
+                    "date": 1707024247789,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -72,9 +72,9 @@\n       {modelHadset && (\r\n         <>\r\n           <DemoCanvasWidget>\r\n             <CanvasWidget engine={engine} />\r\n-         <DiagramA/>\r\n+         {/* <DiagramA/> */}\r\n           </DemoCanvasWidget>\r\n         </>\r\n       )}\r\n     </div>\r\n"
+                },
+                {
+                    "date": 1707024435499,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,10 +5,10 @@\n import { CanvasWidget } from '@projectstorm/react-canvas-core';\r\n import { TableFactory } from './7';\r\n import { TableModel } from './5';\r\n import { DemoCanvasWidget } from './DemoCanvasWidget';\r\n-import DiagramA from './e';\r\n \r\n+\r\n const Diagram = () => {\r\n   const [engine, setEngine] = useState(createEngine());\r\n \r\n   const model = new DiagramModel();\r\n@@ -72,9 +72,8 @@\n       {modelHadset && (\r\n         <>\r\n           <DemoCanvasWidget>\r\n             <CanvasWidget engine={engine} />\r\n-         {/* <DiagramA/> */}\r\n           </DemoCanvasWidget>\r\n         </>\r\n       )}\r\n     </div>\r\n"
+                },
+                {
+                    "date": 1707024504564,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -71,9 +71,10 @@\n     <div style={{ height: '800px', width: '800px' }}>\r\n       {modelHadset && (\r\n         <>\r\n           <DemoCanvasWidget>\r\n-            <CanvasWidget engine={engine} />\r\n+            <CanvasWidget engine={engine} />]\r\n+            <DiagramAA/>\r\n           </DemoCanvasWidget>\r\n         </>\r\n       )}\r\n     </div>\r\n"
+                },
+                {
+                    "date": 1707024511068,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n import { CanvasWidget } from '@projectstorm/react-canvas-core';\r\n import { TableFactory } from './7';\r\n import { TableModel } from './5';\r\n import { DemoCanvasWidget } from './DemoCanvasWidget';\r\n+import DiagramA from './e';\r\n \r\n \r\n const Diagram = () => {\r\n   const [engine, setEngine] = useState(createEngine());\r\n@@ -72,9 +73,9 @@\n       {modelHadset && (\r\n         <>\r\n           <DemoCanvasWidget>\r\n             <CanvasWidget engine={engine} />]\r\n-            <DiagramAA/>\r\n+            <DiagramA/>\r\n           </DemoCanvasWidget>\r\n         </>\r\n       )}\r\n     </div>\r\n"
+                },
+                {
+                    "date": 1707025236443,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -72,9 +72,9 @@\n     <div style={{ height: '800px', width: '800px' }}>\r\n       {modelHadset && (\r\n         <>\r\n           <DemoCanvasWidget>\r\n-            <CanvasWidget engine={engine} />]\r\n+            <CanvasWidget engine={engine} />\r\n             <DiagramA/>\r\n           </DemoCanvasWidget>\r\n         </>\r\n       )}\r\n"
+                }
+            ],
+            "date": 1707020277399,
+            "name": "Commit-0",
+            "content": "// part 8\r\n// import the necessary modules\r\nimport React, { useEffect, useState } from 'react';\r\nimport createEngine, { DiagramModel } from '@projectstorm/react-diagrams';\r\nimport { CanvasWidget } from '@projectstorm/react-canvas-core';\r\nimport { TableFactory } from './TableFactory';\r\nimport { TableModel } from './TableModel';\r\nimport { DemoCanvasWidget } from './DemoCanvasWidget';\r\n\r\nconst Diagram = () => {\r\n  const [engine, setEngine] = useState(createEngine());\r\n\r\n  const model = new DiagramModel();\r\n  const [modelHadset, setmodelHadset] = useState(false);\r\n  // use useEffect hook to initialize the engine and model\r\n  useEffect(() => {\r\n    engine.getNodeFactories().registerFactory(new TableFactory());\r\n\r\n    // create some table objects\r\n    const table1 = new TableModel({\r\n      name: 'Table 1',\r\n      values: [\r\n        ['Name', 'Age', 'Gender'],\r\n        ['Alice', 25, 'F'],\r\n        ['Bob', 30, 'M'],\r\n        ['Charlie', 35, 'M']\r\n      ],\r\n      position: { x: 50, y: 150 },\r\n      color: 'pink',\r\n      cssClass: 'table',\r\n      size: { width: 200, height: 200 }\r\n    });\r\n\r\n    const table2 = new TableModel({\r\n      name: 'Table 2',\r\n      values: [\r\n        ['Country', 'Population', 'Area'],\r\n        ['China', 1441, 9597],\r\n        ['India', 1380, 3287],\r\n        ['USA', 331, 9834]\r\n      ],\r\n      position: { x: 300, y: 150 },\r\n      color: 'lightblue',\r\n      cssClass: 'table',\r\n      size: { width: 200, height: 200 }\r\n    });\r\n\r\n    const table3 = new TableModel({\r\n      name: 'Table 3',\r\n      values: [\r\n        ['Product', 'Price', 'Quantity'],"
+        }
+    ]
+}

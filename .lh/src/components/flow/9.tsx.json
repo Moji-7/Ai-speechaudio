@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/components/flow/9.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1707025236697,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1707025250341,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n import { CanvasWidget } from '@projectstorm/react-canvas-core';\r\n import { TSCustomNodeFactory } from './TSCustomNodeFactory';\r\n import { TSCustomNodeModel } from './TSCustomNodeModel';\r\n import { TableFactory } from './7';\r\n-import { TableModel } from './8';\r\n+import { TableModel } from './5';\r\n import { DemoCanvasWidget } from './DemoCanvasWidget';\r\n \r\n const Diagram = () => {\r\n   const [engine, setEngine] = useState(createEngine());\r\n"
+                },
+                {
+                    "date": 1707025362114,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n import { TSCustomNodeModel } from './TSCustomNodeModel';\r\n import { TableFactory } from './7';\r\n import { TableModel } from './5';\r\n import { DemoCanvasWidget } from './DemoCanvasWidget';\r\n-\r\n+import './style.css'; \r\n const Diagram = () => {\r\n   const [engine, setEngine] = useState(createEngine());\r\n \r\n   const model = new DiagramModel();\r\n"
+                }
+            ],
+            "date": 1707025236697,
+            "name": "Commit-0",
+            "content": "// part 9\r\n// import the necessary modules\r\nimport React, { useEffect, useState } from 'react';\r\nimport createEngine, { DiagramModel } from '@projectstorm/react-diagrams';\r\nimport { CanvasWidget } from '@projectstorm/react-canvas-core';\r\nimport { TSCustomNodeFactory } from './TSCustomNodeFactory';\r\nimport { TSCustomNodeModel } from './TSCustomNodeModel';\r\nimport { TableFactory } from './7';\r\nimport { TableModel } from './8';\r\nimport { DemoCanvasWidget } from './DemoCanvasWidget';\r\n\r\nconst Diagram = () => {\r\n  const [engine, setEngine] = useState(createEngine());\r\n\r\n  const model = new DiagramModel();\r\n  const [modelHadset, setmodelHadset] = useState(false);\r\n  // use useEffect hook to initialize the engine and model\r\n  useEffect(() => {\r\n    // register both the node and table factories with the engine\r\n    engine.getNodeFactories().registerFactory(new TSCustomNodeFactory());\r\n    engine.getNodeFactories().registerFactory(new TableFactory());\r\n\r\n    // create some custom nodes\r\n    const node1 = new TSCustomNodeModel({\r\n      name: 'Node 1',\r\n      color: 'rgb(0,192,255)',\r\n      value: 1,\r\n      cssClass: 'circle-node'\r\n    });\r\n\r\n    const node2 = new TSCustomNodeModel({\r\n      name: 'Node 2',\r\n      color: 'rgb(255,255,0)',\r\n      value: 20,\r\n      cssClass: 'triangle-node'\r\n    });\r\n\r\n    const node3 = new TSCustomNodeModel({\r\n      name: 'Node 3',\r\n      color: 'rgb(192,255,0)',\r\n      value: 30,\r\n      cssClass: 'pentagon-node'\r\n    });\r\n\r\n    node1.setPosition(50, 50);\r\n    node2.setPosition(200, 50);\r\n    node3.setPosition(350, 50);\r\n\r\n    const link1 = node1.getPort('OUT').link(node2.getPort('IN'));\r\n    const link2 = node2.getPort('OUT').link(node3.getPort('IN'));\r\n\r\n    // create some table objects\r\n    const table1 = new TableModel({\r\n      name: 'Table 1',\r\n      values: [\r\n        ['Name', 'Age', 'Gender'],\r\n        ['Alice', 25, 'F'],\r\n        ['Bob', 30, 'M'],\r\n        ['Charlie', 35, 'M']\r\n      ],\r\n      position: { x: 50, y: 150 },\r\n      color: 'pink',\r\n      cssClass: 'table',\r\n      size: { width: 200, height: 200 }\r\n    });\r\n\r\n    const table2 = new TableModel({\r\n      name: 'Table 2',\r\n      values: [\r\n        ['Country', 'Population', 'Area'],\r\n        ['China', 1441, 9597],\r\n        ['India', 1380, 3287],\r\n        ['USA', 331, 9834]\r\n      ],\r\n      position: { x: 300, y: 150 },\r\n      color: 'lightblue',\r\n      cssClass: 'table',\r\n      size: { width: 200, height: 200 }\r\n    });\r\n\r\n    const table3 = new TableModel({\r\n      name: 'Table 3',\r\n      values: [\r\n        ['Product', 'Price', 'Quantity'],\r\n        ['Apple', 1, 10],\r\n        ['Banana', 0.5, 20],\r\n        ['Carrot', 0.2, 30]\r\n      ],\r\n      position: { x: 550, y: 150 },\r\n      color: 'lightgreen',\r\n      cssClass: 'table',\r\n      size: { width: 200, height: 200 }\r\n    });\r\n\r\n    // add both the nodes and tables to the model\r\n    model.addAll(node1, node2, node3, link1, link2, table1, table2, table3);\r\n    engine.setModel(model);\r\n\r\n    setEngine(engine);\r\n    setmodelHadset(true);\r\n  }, [modelHadset]);\r\n\r\n  return (\r\n    <div style={{ height: '800px', width: '800px' }}>\r\n      {modelHadset && (\r\n        <>\r\n          <DemoCanvasWidget>\r\n            <CanvasWidget engine={engine} />\r\n          </DemoCanvasWidget>\r\n        </>\r\n      )}\r\n    </div>\r\n  );\r\n};\r\nexport default Diagram;\r\n"
+        }
+    ]
+}

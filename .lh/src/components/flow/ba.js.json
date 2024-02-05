@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/components/flow/ba.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1706939723469,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1706939723469,
+            "name": "Commit-0",
+            "content": "// A custom node component that uses the useMemo hook\r\nconst CustomNodeModel = (options = {}) => {\r\n    // Use the useMemo hook to create and return the node model\r\n    return useMemo(() => {\r\n      // Create a new node model with the given options\r\n      const node = new DefaultNodeModel({\r\n        ...options,\r\n        type: \"custom-node\",\r\n      });\r\n      // Add a port to the node\r\n      node.addPort(new DefaultPortModel({ in: false, name: \"out\" }));\r\n      // Add some state to store the data and the tooltip visibility\r\n      node.data = null;\r\n      node.tooltipVisible = false;\r\n      // Add a method to fetch some data from a mock API\r\n      node.fetchData = async () => {\r\n        const response = await fetch(\r\n          `https://jsonplaceholder.typicode.com/posts/${node.options.id}`\r\n        );\r\n        const data = await response.json();\r\n        node.data = data;\r\n      };\r\n      // Add a method to toggle the tooltip visibility\r\n      node.toggleTooltip = () => {\r\n        node.tooltipVisible = !node.tooltipVisible;\r\n      };\r\n      // Return the node model\r\n      return node;\r\n    }, [options]);\r\n  };\r\n  "
+        }
+    ]
+}

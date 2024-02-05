@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/components/flow/4.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1706936292922,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1706936292922,
+            "name": "Commit-0",
+            "content": "import React, { useEffect, useState } from \"react\";\r\nimport ReactFlow, { isNode, isEdge } from \"react-flow-renderer\";\r\nimport axios from \"axios\";\r\nimport ReactTooltip from \"react-tooltip\";\r\n\r\nconst Diagram = () => {\r\n  const [elements, setElements] = useState([]);\r\n  const [error, setError] = useState(null);\r\n\r\n  useEffect(() => {\r\n    fetchData();\r\n  }, []);\r\n\r\n  const fetchData = async () => {\r\n    try {\r\n      // Make API call to fetch diagram data\r\n      const response = await axios.get(\"https://api.example.com/diagram\");\r\n      const { nodes, links } = response.data;\r\n\r\n      // Combine nodes and links into a single array\r\n      const diagramElements = [...nodes, ...links];\r\n\r\n      // Set the elements state with the diagram data\r\n      setElements(diagramElements);\r\n    } catch (error) {\r\n      // Handle error if API call fails\r\n      setError(\"Error fetching diagram data\");\r\n    }\r\n  };\r\n\r\n  const handleElementClick = (event, element) => {\r\n    if (isNode(element)) {\r\n      // Show tooltip for nodes on click event\r\n      ReactTooltip.show(event.target);\r\n    }\r\n  };\r\n\r\n  const renderDiagram = () => {\r\n    return (\r\n      <ReactFlow\r\n        elements={elements}\r\n        style={{ width: \"100%\", height: \"500px\" }}\r\n        onElementClick={handleElementClick}\r\n      />\r\n    );\r\n  };\r\n\r\n  return (\r\n    <div>\r\n      <h1>Shapes with Connectors Diagram</h1>\r\n      {error ? (\r\n        // Display error message if there's an error\r\n        <p>{error}</p>\r\n      ) : (\r\n        <>\r\n          {renderDiagram()}\r\n          <ReactTooltip effect=\"solid\" />\r\n        </>\r\n      )}\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default Diagram;\r\n"
+        }
+    ]
+}

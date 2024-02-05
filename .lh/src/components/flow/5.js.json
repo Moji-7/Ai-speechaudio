@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/components/flow/5.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1706936292923,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1706936292923,
+            "name": "Commit-0",
+            "content": "import React, { useEffect, useState } from \"react\";\r\nimport { DiagramEngine, DiagramModel, DefaultNodeModel, DefaultLinkModel } from \"react-diagrams\";\r\nimport axios from \"axios\";\r\nimport ReactTooltip from \"react-tooltip\";\r\n\r\nconst Diagram = () => {\r\n  const [nodes, setNodes] = useState([]);\r\n  const [links, setLinks] = useState([]);\r\n  const [error, setError] = useState(null);\r\n\r\n  useEffect(() => {\r\n    fetchData();\r\n  }, []);\r\n\r\n  const fetchData = async () => {\r\n    try {\r\n      const response = await axios.get(\"https://api.example.com/diagram\");\r\n      const { nodes, links } = response.data;\r\n      setNodes(nodes);\r\n      setLinks(links);\r\n    } catch (error) {\r\n      setError(\"Error fetching diagram data\");\r\n    }\r\n  };\r\n\r\n  const renderNodes = () => {\r\n    return nodes.map((node) => (\r\n      <div\r\n        key={node.id}\r\n        data-tip={node.tooltip}\r\n        style={{ position: \"absolute\", left: node.x, top: node.y }}\r\n      >\r\n        {node.name}\r\n      </div>\r\n    ));\r\n  };\r\n\r\n  const renderDiagram = () => {\r\n    const engine = new DiagramEngine();\r\n    engine.installDefaultFactories();\r\n\r\n    const diagramModel = new DiagramModel();\r\n\r\n    nodes.forEach((node) => {\r\n      const defaultNode = new DefaultNodeModel(node.name, node.color);\r\n      defaultNode.setPosition(node.x, node.y);\r\n      diagramModel.addNode(defaultNode);\r\n    });\r\n\r\n    links.forEach((link) => {\r\n      const defaultLink = new DefaultLinkModel();\r\n      defaultLink.setSourcePort(link.sourcePort);\r\n      defaultLink.setTargetPort(link.targetPort);\r\n      diagramModel.addLink(defaultLink);\r\n    });\r\n\r\n    engine.setModel(diagramModel);\r\n\r\n    return (\r\n      <div style={{ width: \"100%\", height: \"500px\" }}>\r\n        <DiagramWidget diagramEngine={engine} />\r\n      </div>\r\n    );\r\n  };\r\n\r\n  return (\r\n    <div>\r\n      <h1>Shapes with Connectors Diagram</h1>\r\n      {error ? (\r\n        <p>{error}</p>\r\n      ) : (\r\n        <>\r\n          {renderDiagram()}\r\n          {renderNodes()}\r\n          <ReactTooltip effect=\"solid\" />\r\n        </>\r\n      )}\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default Diagram;\r\n"
+        }
+    ]
+}

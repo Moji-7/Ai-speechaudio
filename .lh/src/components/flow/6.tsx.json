@@ -1,0 +1,50 @@
+{
+    "sourceFile": "src/components/flow/6.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 8,
+            "patches": [
+                {
+                    "date": 1707020248563,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1707020307232,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n // part 6\r\n // import the necessary modules\r\n import * as React from 'react';\r\n import { DiagramEngine, PortWidget } from '@projectstorm/react-diagrams-core';\r\n-import { TableModel } from './TableModel';\r\n+import { TableModel } from './5';\r\n \r\n // define the table widget props interface\r\n export interface TableWidgetProps extends React.PropsWithChildren<any> {\r\n   table: TableModel;\r\n"
+                },
+                {
+                    "date": 1707020440630,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,10 +27,10 @@\n       <div\r\n         className={this.props.table.cssClass}\r\n         style={{\r\n           position: 'absolute',\r\n-          left: this.props.table.position.x,\r\n-          top: this.props.table.position.y,\r\n+         // left: this.props.table.position.x,\r\n+         // top: this.props.table.position.y,\r\n           width: this.props.table.size.width,\r\n           height: this.props.table.size.height,\r\n           backgroundColor: this.props.table.color\r\n         }}\r\n"
+                },
+                {
+                    "date": 1707020456514,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,15 +36,15 @@\n         }}\r\n       >\r\n         <PortWidget\r\n           engine={this.props.engine}\r\n-          port={this.props.table.getPort('IN')}\r\n+         // port={this.props.table.getPort('IN')}\r\n         >\r\n           <div className=\"circle-port\" />\r\n         </PortWidget>\r\n         <PortWidget\r\n           engine={this.props.engine}\r\n-          port={this.props.table.getPort('OUT')}\r\n+        //  port={this.props.table.getPort('OUT')}\r\n         >\r\n           <div className=\"circle-port\" />\r\n         </PortWidget>\r\n         <table>\r\n"
+                },
+                {
+                    "date": 1707020470357,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,15 +36,15 @@\n         }}\r\n       >\r\n         <PortWidget\r\n           engine={this.props.engine}\r\n-         // port={this.props.table.getPort('IN')}\r\n+          port={this.props.table.getPort('IN')}\r\n         >\r\n           <div className=\"circle-port\" />\r\n         </PortWidget>\r\n         <PortWidget\r\n           engine={this.props.engine}\r\n-        //  port={this.props.table.getPort('OUT')}\r\n+          port={this.props.table.getPort('OUT')}\r\n         >\r\n           <div className=\"circle-port\" />\r\n         </PortWidget>\r\n         <table>\r\n"
+                },
+                {
+                    "date": 1707020836448,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,15 +36,15 @@\n         }}\r\n       >\r\n         <PortWidget\r\n           engine={this.props.engine}\r\n-          port={this.props.table.getPort('IN')}\r\n+         // port={this.props.table.getPort('IN')}\r\n         >\r\n           <div className=\"circle-port\" />\r\n         </PortWidget>\r\n         <PortWidget\r\n           engine={this.props.engine}\r\n-          port={this.props.table.getPort('OUT')}\r\n+         // port={this.props.table.getPort('OUT')}\r\n         >\r\n           <div className=\"circle-port\" />\r\n         </PortWidget>\r\n         <table>\r\n"
+                },
+                {
+                    "date": 1707020890146,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,20 +34,20 @@\n           height: this.props.table.size.height,\r\n           backgroundColor: this.props.table.color\r\n         }}\r\n       >\r\n-        <PortWidget\r\n+        {/* <PortWidget\r\n           engine={this.props.engine}\r\n-         // port={this.props.table.getPort('IN')}\r\n+          port={this.props.table.getPort('IN')}\r\n         >\r\n           <div className=\"circle-port\" />\r\n         </PortWidget>\r\n         <PortWidget\r\n           engine={this.props.engine}\r\n-         // port={this.props.table.getPort('OUT')}\r\n+          port={this.props.table.getPort('OUT')}\r\n         >\r\n           <div className=\"circle-port\" />\r\n-        </PortWidget>\r\n+        </PortWidget> */}\r\n         <table>\r\n           <tbody>\r\n             {this.props.table.values.map((row, i) => (\r\n               <tr key={i}>\r\n"
+                },
+                {
+                    "date": 1707020913075,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,9 @@\n         <table>\r\n           <tbody>\r\n             {this.props.table.values.map((row, i) => (\r\n               <tr key={i}>\r\n-                {row.map((cell, j) => (\r\n+                {row.map((cell:any, j) => (\r\n                   <td key={j}>{cell}</td>\r\n                 ))}\r\n               </tr>\r\n             ))}\r\n"
+                },
+                {
+                    "date": 1707020933992,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,9 @@\n         <table>\r\n           <tbody>\r\n             {this.props.table.values.map((row, i) => (\r\n               <tr key={i}>\r\n-                {row.map((cell:any, j) => (\r\n+                {row.map((cell:any, j:number) => (\r\n                   <td key={j}>{cell}</td>\r\n                 ))}\r\n               </tr>\r\n             ))}\r\n"
+                }
+            ],
+            "date": 1707020248563,
+            "name": "Commit-0",
+            "content": "\r\n// part 6\r\n// import the necessary modules\r\nimport * as React from 'react';\r\nimport { DiagramEngine, PortWidget } from '@projectstorm/react-diagrams-core';\r\nimport { TableModel } from './TableModel';\r\n\r\n// define the table widget props interface\r\nexport interface TableWidgetProps extends React.PropsWithChildren<any> {\r\n  table: TableModel;\r\n  engine: DiagramEngine;\r\n  size: { width: number; height: number };\r\n}\r\n\r\n// define the table widget class\r\nexport class TableWidget extends React.Component<TableWidgetProps> {\r\n  // constructor method\r\n  constructor(props: TableWidgetProps) {\r\n    // call the super constructor with the props\r\n    super(props);\r\n  }\r\n\r\n  // render method\r\n  render() {\r\n    // return a JSX element with the table widget\r\n    return (\r\n      <div\r\n        className={this.props.table.cssClass}\r\n        style={{\r\n          position: 'absolute',\r\n          left: this.props.table.position.x,\r\n          top: this.props.table.position.y,\r\n          width: this.props.table.size.width,\r\n          height: this.props.table.size.height,\r\n          backgroundColor: this.props.table.color\r\n        }}\r\n      >\r\n        <PortWidget\r\n          engine={this.props.engine}\r\n          port={this.props.table.getPort('IN')}\r\n        >\r\n          <div className=\"circle-port\" />\r\n        </PortWidget>\r\n        <PortWidget\r\n          engine={this.props.engine}\r\n          port={this.props.table.getPort('OUT')}\r\n        >\r\n          <div className=\"circle-port\" />\r\n        </PortWidget>\r\n        <table>\r\n          <tbody>\r\n            {this.props.table.values.map((row, i) => (\r\n              <tr key={i}>\r\n                {row.map((cell, j) => (\r\n                  <td key={j}>{cell}</td>\r\n                ))}\r\n              </tr>\r\n            ))}\r\n          </tbody>\r\n        </table>\r\n      </div>\r\n    );\r\n  }\r\n}"
+        }
+    ]
+}

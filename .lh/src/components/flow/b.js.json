@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/components/flow/b.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1706939542975,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1706939584358,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,5 +41,5 @@\n       </Tooltip>\r\n     </div>\r\n   );\r\n };\r\n-AI-generated code. Review and use carefully. More info on FAQ.\n\\ No newline at end of file\n+export default CustomNodeWidget;\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1706939542975,
+            "name": "Commit-0",
+            "content": "JavaScript\r\n\r\n// A custom node component that uses the useState and useEffect hooks\r\nconst CustomNodeWidget = (props) => {\r\n  // Get the node and the engine from the props\r\n  const { node, engine } = props;\r\n  // Use the useState hook to store the mouse coordinates\r\n  const [x, y, setXY] = useState([props.x, props.y]);\r\n  // Use the useEffect hook to fetch the data for the node\r\n  useEffect(() => {\r\n    node.fetchData();\r\n  }, [node]);\r\n  // A method to handle the mouse move event\r\n  const handleMouseMove = (event) => {\r\n    // Update the mouse coordinates\r\n    setXY([event.clientX, event.clientY]);\r\n  };\r\n  // A method to handle the mouse enter event\r\n  const handleMouseEnter = () => {\r\n    // Toggle the tooltip visibility\r\n    node.toggleTooltip();\r\n  };\r\n  // A method to handle the mouse leave event\r\n  const handleMouseLeave = () => {\r\n    // Toggle the tooltip visibility\r\n    node.toggleTooltip();\r\n  };\r\n  return (\r\n    <div>\r\n      {/* Render the default node widget */}\r\n      <DefaultNodeWidget node={node} engine={engine} />\r\n      {/* Render the tooltip component with the node data */}\r\n      <Tooltip\r\n        x={x}\r\n        y={y}\r\n        visible={node.tooltipVisible}\r\n        onMouseMove={handleMouseMove}\r\n      >\r\n        <p>Title: {node.data?.title}</p>\r\n        <p>Body: {node.data?.body}</p>\r\n      </Tooltip>\r\n    </div>\r\n  );\r\n};\r\nAI-generated code. Review and use carefully. More info on FAQ."
+        }
+    ]
+}

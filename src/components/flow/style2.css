@@ -1,0 +1,25 @@
+
+
+
+
+ .arrow-top {
+   background-size: contain;
+    background-image: url('statics/arrow-top.svg');
+    display: block;
+  }
+  
+ .arrow-below  {
+   background-size: contain;
+    background-image: url('statics/arrow-below.svg');
+  }
+  
+ .arrow-right  {
+   background-size: contain;
+    background-image: url('statics/arrow-right.svg');
+  }
+  
+ .arrow-left  {
+   background-size: contain;
+    background-image: url('statics/arrow-left.svg');
+  }
+  

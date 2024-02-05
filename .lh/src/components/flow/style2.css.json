@@ -1,0 +1,114 @@
+{
+    "sourceFile": "src/components/flow/style2.css",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 24,
+            "patches": [
+                {
+                    "date": 1707039047774,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1707039136153,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,10 +9,10 @@\n     font-weight: bold;\r\n   }\r\n   \r\n   .custom-node-color-2 {\r\n-    width: 200px;\r\n-    height: 200px;\r\n+    width: 20px;\r\n+    height: 20px;\r\n     background-image: url('AJ_Digital_Camera.svg');\r\n   }\r\n   \r\n   .circle-node {\r\n"
+                },
+                {
+                    "date": 1707039163347,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,10 +9,10 @@\n     font-weight: bold;\r\n   }\r\n   \r\n   .custom-node-color-2 {\r\n-    width: 20px;\r\n-    height: 20px;\r\n+    width: 70px;\r\n+    height: 80px;\r\n     background-image: url('AJ_Digital_Camera.svg');\r\n   }\r\n   \r\n   .circle-node {\r\n"
+                },
+                {
+                    "date": 1707039845596,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,29 +1,7 @@\n \r\n-\r\n-  .custom-node {\r\n-    width: 50px;\r\n-    height: 50px;\r\n-    display: flex;\r\n-    align-items: center;\r\n-    justify-content: center;\r\n-    font-weight: bold;\r\n-  }\r\n-  \r\n   .custom-node-color-2 {\r\n     width: 70px;\r\n     height: 80px;\r\n     background-image: url('AJ_Digital_Camera.svg');\r\n   }\r\n   \r\n-  .circle-node {\r\n-    border-radius: 50%;\r\n-  }\r\n-  \r\n-  .triangle-node {\r\n-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);\r\n-  }\r\n-  \r\n-  .pentagon-node {\r\n-    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);\r\n-  }\r\n-  \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1707043299534,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n \r\n   .custom-node-color-2 {\r\n     width: 70px;\r\n     height: 80px;\r\n-    background-image: url('AJ_Digital_Camera.svg');\r\n+    background-image: url('arrow-1.svg');\r\n   }\r\n   \r\n"
+                },
+                {
+                    "date": 1707043462209,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,11 @@\n \r\n-  .custom-node-color-2 {\r\n-    width: 70px;\r\n-    height: 80px;\r\n-    background-image: url('arrow-1.svg');\r\n-  }\r\n-  \r\n+.svg-container {\r\n+  width: 200px; /* Define the width you want */\r\n+  height: 150px; /* Define the height you want */\r\n+}\r\n+.svg-container arrow-1 {\r\n+  width: 100%; /* Show the entire SVG file */\r\n+  height: 100%; /* Show the entire SVG file */\r\n+     background-image: url('arrow-1.svg');\r\n+\r\n+}\r\n"
+                },
+                {
+                    "date": 1707044031403,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n .svg-container {\r\n   width: 200px; /* Define the width you want */\r\n   height: 150px; /* Define the height you want */\r\n }\r\n-.svg-container arrow-1 {\r\n+.svg-container .arrow-1 {\r\n   width: 100%; /* Show the entire SVG file */\r\n   height: 100%; /* Show the entire SVG file */\r\n      background-image: url('arrow-1.svg');\r\n \r\n"
+                },
+                {
+                    "date": 1707044060568,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,10 +2,10 @@\n .svg-container {\r\n   width: 200px; /* Define the width you want */\r\n   height: 150px; /* Define the height you want */\r\n }\r\n-.svg-container .arrow-1 {\r\n+.arrow-1 {\r\n   width: 100%; /* Show the entire SVG file */\r\n   height: 100%; /* Show the entire SVG file */\r\n-     background-image: url('arrow-1.svg');\r\n+  background-image: url('arrow-1.svg');\r\n \r\n }\r\n"
+                },
+                {
+                    "date": 1707044128130,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,11 @@\n \r\n .svg-container {\r\n   width: 200px; /* Define the width you want */\r\n   height: 150px; /* Define the height you want */\r\n+  background-color: aqua;\r\n }\r\n-.arrow-1 {\r\n+.svg-container .arrow-1 {\r\n   width: 100%; /* Show the entire SVG file */\r\n   height: 100%; /* Show the entire SVG file */\r\n   background-image: url('arrow-1.svg');\r\n \r\n"
+                },
+                {
+                    "date": 1707044136481,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n .svg-container {\r\n   width: 200px; /* Define the width you want */\r\n   height: 150px; /* Define the height you want */\r\n   background-color: aqua;\r\n+  display: block;\r\n }\r\n .svg-container .arrow-1 {\r\n   width: 100%; /* Show the entire SVG file */\r\n   height: 100%; /* Show the entire SVG file */\r\n"
+                },
+                {
+                    "date": 1707044258920,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,7 +7,7 @@\n }\r\n .svg-container .arrow-1 {\r\n   width: 100%; /* Show the entire SVG file */\r\n   height: 100%; /* Show the entire SVG file */\r\n-  background-image: url('arrow-1.svg');\r\n+  background-image: url('arrow-1.svg');  display: block;\r\n \r\n }\r\n"
+                },
+                {
+                    "date": 1707044268410,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,11 @@\n \r\n .svg-container {\r\n   width: 200px; /* Define the width you want */\r\n   height: 150px; /* Define the height you want */\r\n-  background-color: aqua;\r\n-  display: block;\r\n }\r\n .svg-container .arrow-1 {\r\n   width: 100%; /* Show the entire SVG file */\r\n   height: 100%; /* Show the entire SVG file */\r\n-  background-image: url('arrow-1.svg');  display: block;\r\n+  background-image: url('arrow-1.svg');\r\n \r\n }\r\n"
+                },
+                {
+                    "date": 1707044379344,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,7 +5,7 @@\n }\r\n .svg-container .arrow-1 {\r\n   width: 100%; /* Show the entire SVG file */\r\n   height: 100%; /* Show the entire SVG file */\r\n-  background-image: url('arrow-1.svg');\r\n+     background-image: url('arrow-1.svg');\r\n \r\n }\r\n"
+                },
+                {
+                    "date": 1707044404584,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,9 @@\n \r\n-.svg-container {\r\n-  width: 200px; /* Define the width you want */\r\n-  height: 150px; /* Define the height you want */\r\n-}\r\n-.svg-container .arrow-1 {\r\n-  width: 100%; /* Show the entire SVG file */\r\n-  height: 100%; /* Show the entire SVG file */\r\n-     background-image: url('arrow-1.svg');\r\n \r\n-}\r\n+\r\n+  .custom-node-color-2 {\r\n+    width: 70px;\r\n+    height: 80px;\r\n+    background-image: url('arrow-1.svg');\r\n+  }\r\n+  \r\n"
+                },
+                {
+                    "date": 1707044432853,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,16 @@\n \r\n \r\n-\r\n-  .custom-node-color-2 {\r\n+.svg-container {\r\n+  width: 200px; /* Define the width you want */\r\n+  height: 150px; /* Define the height you want */\r\n+}\r\n+.svg-container .arrow-1 {\r\n+  width: 100%; /* Show the entire SVG file */\r\n+  height: 100%; /* Show the entire SVG file */\r\n+  background-image: url('arrow-1.svg');\r\n+}\r\n+  .svg-container .arrow-1  {\r\n     width: 70px;\r\n     height: 80px;\r\n     background-image: url('arrow-1.svg');\r\n   }\r\n"
+                },
+                {
+                    "date": 1707044541705,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,15 +3,10 @@\n .svg-container {\r\n   width: 200px; /* Define the width you want */\r\n   height: 150px; /* Define the height you want */\r\n }\r\n-.svg-container .arrow-1 {\r\n-  width: 100%; /* Show the entire SVG file */\r\n-  height: 100%; /* Show the entire SVG file */\r\n-  background-image: url('arrow-1.svg');\r\n-}\r\n-  .svg-container .arrow-1  {\r\n-    width: 70px;\r\n-    height: 80px;\r\n+\r\n+ .arrow-1  {\r\n+   background-size: contain;\r\n     background-image: url('arrow-1.svg');\r\n   }\r\n   \r\n"
+                },
+                {
+                    "date": 1707046666857,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,8 @@\n \r\n \r\n-.svg-container {\r\n-  width: 200px; /* Define the width you want */\r\n-  height: 150px; /* Define the height you want */\r\n-}\r\n \r\n+\r\n  .arrow-1  {\r\n    background-size: contain;\r\n     background-image: url('arrow-1.svg');\r\n   }\r\n"
+                },
+                {
+                    "date": 1707047350134,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,4 +6,9 @@\n    background-size: contain;\r\n     background-image: url('arrow-1.svg');\r\n   }\r\n   \r\n+ .arrow-right  {\r\n+   background-size: contain;\r\n+    background-image: url('arrow-right.svg');\r\n+  }\r\n+  \r\n"
+                },
+                {
+                    "date": 1707047519230,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,24 @@\n \r\n \r\n \r\n \r\n- .arrow-1  {\r\n+ .arrow-up {\r\n    background-size: contain;\r\n     background-image: url('arrow-1.svg');\r\n   }\r\n   \r\n+ .arrow-down  {\r\n+   background-size: contain;\r\n+    background-image: url('arrow-right.svg');\r\n+  }\r\n+  \r\n  .arrow-right  {\r\n    background-size: contain;\r\n     background-image: url('arrow-right.svg');\r\n   }\r\n   \r\n+ .arrow-left  {\r\n+   background-size: contain;\r\n+    background-image: url('arrow-right.svg');\r\n+  }\r\n+  \r\n"
+                },
+                {
+                    "date": 1707047556219,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,14 +3,14 @@\n \r\n \r\n  .arrow-up {\r\n    background-size: contain;\r\n-    background-image: url('arrow-1.svg');\r\n+    background-image: url('arrow-top.svg');\r\n   }\r\n   \r\n- .arrow-down  {\r\n+ .arrow-below  {\r\n    background-size: contain;\r\n-    background-image: url('arrow-right.svg');\r\n+    background-image: url('arrow-below.svg');\r\n   }\r\n   \r\n  .arrow-right  {\r\n    background-size: contain;\r\n@@ -18,7 +18,7 @@\n   }\r\n   \r\n  .arrow-left  {\r\n    background-size: contain;\r\n-    background-image: url('arrow-right.svg');\r\n+    background-image: url('arrow-left.svg');\r\n   }\r\n   \r\n"
+                },
+                {
+                    "date": 1707047593000,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n \r\n \r\n \r\n \r\n- .arrow-up {\r\n+ .arrow-top {\r\n    background-size: contain;\r\n     background-image: url('arrow-top.svg');\r\n   }\r\n   \r\n"
+                },
+                {
+                    "date": 1707047642202,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,22 +3,22 @@\n \r\n \r\n  .arrow-top {\r\n    background-size: contain;\r\n-    background-image: url('arrow-top.svg');\r\n+    background-image: url('statics/arrow-top.svg');\r\n   }\r\n   \r\n  .arrow-below  {\r\n    background-size: contain;\r\n-    background-image: url('arrow-below.svg');\r\n+    background-image: url('statics/arrow-below.svg');\r\n   }\r\n   \r\n  .arrow-right  {\r\n    background-size: contain;\r\n-    background-image: url('arrow-right.svg');\r\n+    background-image: url('statics/arrow-right.svg');\r\n   }\r\n   \r\n  .arrow-left  {\r\n    background-size: contain;\r\n-    background-image: url('arrow-left.svg');\r\n+    background-image: url('statics/arrow-left.svg');\r\n   }\r\n   \r\n"
+                },
+                {
+                    "date": 1707048865107,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,10 @@\n \r\n  .arrow-top {\r\n    background-size: contain;\r\n     background-image: url('statics/arrow-top.svg');\r\n+    width: 200px;\r\n+    height: 200px;\r\n   }\r\n   \r\n  .arrow-below  {\r\n    background-size: contain;\r\n"
+                },
+                {
+                    "date": 1707048955759,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,10 +4,9 @@\n \r\n  .arrow-top {\r\n    background-size: contain;\r\n     background-image: url('statics/arrow-top.svg');\r\n-    width: 200px;\r\n-    height: 200px;\r\n+    \r\n   }\r\n   \r\n  .arrow-below  {\r\n    background-size: contain;\r\n"
+                },
+                {
+                    "date": 1707048961574,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n \r\n  .arrow-top {\r\n    background-size: contain;\r\n     background-image: url('statics/arrow-top.svg');\r\n-    \r\n+    display: block;\r\n   }\r\n   \r\n  .arrow-below  {\r\n    background-size: contain;\r\n"
+                }
+            ],
+            "date": 1707039047774,
+            "name": "Commit-0",
+            "content": "\r\n\r\n  .custom-node {\r\n    width: 50px;\r\n    height: 50px;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    font-weight: bold;\r\n  }\r\n  \r\n  .custom-node-color-2 {\r\n    width: 200px;\r\n    height: 200px;\r\n    background-image: url('AJ_Digital_Camera.svg');\r\n  }\r\n  \r\n  .circle-node {\r\n    border-radius: 50%;\r\n  }\r\n  \r\n  .triangle-node {\r\n    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);\r\n  }\r\n  \r\n  .pentagon-node {\r\n    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);\r\n  }\r\n  "
+        }
+    ]
+}

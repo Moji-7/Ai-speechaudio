@@ -1,0 +1,30 @@
+{
+    "sourceFile": "src/components/flow/Circle.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1706960476974,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1706960625807,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,9 @@\n import React, { useEffect, useRef } from 'react';\r\n \r\n const Circle = () => {\r\n+\r\n+\r\n     const canvasRef = useRef<HTMLCanvasElement | null>(null);\r\n \r\n     useEffect(() => {\r\n         if (canvasRef.current) {\r\n"
+                },
+                {
+                    "date": 1706960742474,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,10 @@\n \r\n const Circle = () => {\r\n \r\n \r\n-    const canvasRef = useRef<HTMLCanvasElement | null>(null);\r\n+ //   const canvasRef = useRef<HTMLCanvasElement | null>(null);\r\n+    const canvasRef = useRef(null);\r\n \r\n     useEffect(() => {\r\n         if (canvasRef.current) {\r\n             const ctx = canvasRef.current.getContext('2d');\r\n"
+                },
+                {
+                    "date": 1706962299044,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,7 @@\n import React, { useEffect, useRef } from 'react';\r\n \r\n const Circle = () => {\r\n-\r\n-\r\n- //   const canvasRef = useRef<HTMLCanvasElement | null>(null);\r\n     const canvasRef = useRef(null);\r\n \r\n     useEffect(() => {\r\n         if (canvasRef.current) {\r\n"
+                }
+            ],
+            "date": 1706960476974,
+            "name": "Commit-0",
+            "content": "import React, { useEffect, useRef } from 'react';\r\n\r\nconst Circle = () => {\r\n    const canvasRef = useRef<HTMLCanvasElement | null>(null);\r\n\r\n    useEffect(() => {\r\n        if (canvasRef.current) {\r\n            const ctx = canvasRef.current.getContext('2d');\r\n            ctx?.beginPath();\r\n            ctx?.arc(100, 100, 50, 0, 2 * Math.PI);\r\n            ctx?.stroke();\r\n        }\r\n    }, []);\r\n\r\n    return (\r\n        <canvas\r\n            ref={canvasRef}\r\n            width=\"200\"\r\n            height=\"200\"\r\n            style={{ border: '2px solid black' }}\r\n        />\r\n    );\r\n};\r\n\r\nexport default Circle;\r\n"
+        }
+    ]
+}

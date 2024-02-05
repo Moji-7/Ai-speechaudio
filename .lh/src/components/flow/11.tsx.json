@@ -1,0 +1,54 @@
+{
+    "sourceFile": "src/components/flow/11.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 9,
+            "patches": [
+                {
+                    "date": 1707036835717,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1707036905297,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n // import the necessary modules\r\n import * as React from 'react';\r\n import { AbstractReactFactory } from '@projectstorm/react-canvas-core';\r\n import { SVGModel } from './SVGModel';\r\n-import { SVGWidget } from './SVGWidget';\r\n+import { SVGWidget } from './12';\r\n \r\n // define the SVGFactory class\r\n export class SVGFactory extends AbstractReactFactory {\r\n     constructor() {\r\n"
+                },
+                {
+                    "date": 1707036911299,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n // SVGFactory.js\r\n // import the necessary modules\r\n import * as React from 'react';\r\n import { AbstractReactFactory } from '@projectstorm/react-canvas-core';\r\n-import { SVGModel } from './SVGModel';\r\n+import { SVGModel } from './10';\r\n import { SVGWidget } from './12';\r\n \r\n // define the SVGFactory class\r\n export class SVGFactory extends AbstractReactFactory {\r\n"
+                },
+                {
+                    "date": 1707038398700,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,25 +1,27 @@\n-// part 16\r\n-// SVGFactory.js\r\n // import the necessary modules\r\n import * as React from 'react';\r\n+import { TSCustomNodeModel } from './TSCustomNodeModel';\r\n+import { TSCustomNodeWidget } from './TSCustomNodeWidget';\r\n import { AbstractReactFactory } from '@projectstorm/react-canvas-core';\r\n-import { SVGModel } from './10';\r\n-import { SVGWidget } from './12';\r\n+import { DiagramEngine } from '@projectstorm/react-diagrams-core';\r\n \r\n-// define the SVGFactory class\r\n-export class SVGFactory extends AbstractReactFactory {\r\n-    constructor() {\r\n-        // initialize the SVGFactory with the svg type\r\n-        super('svg');\r\n-    }\r\n+// define the custom node factory class\r\n+export class TSCustomNodeFactory extends AbstractReactFactory<TSCustomNodeModel, DiagramEngine> {\r\n+  // constructor method\r\n+  constructor() {\r\n+    // call the super constructor with the custom node type\r\n+    super('ts-custom-node');\r\n+  }\r\n \r\n-    // generate a new SVGModel instance\r\n-    generateModel(initialConfig) {\r\n-        return new SVGModel(initialConfig);\r\n-    }\r\n+  // generateModel method\r\n+  generateModel(initialConfig:any) {\r\n+    // return a new instance of the custom node model\r\n+    return new TSCustomNodeModel();\r\n+  }\r\n \r\n-    // generate a new SVGWidget instance\r\n-    generateReactWidget(event) {\r\n-        return <SVGWidget engine={this.engine} node={event.model} />;\r\n-    }\r\n+  // generateReactWidget method\r\n+  generateReactWidget(event:any): JSX.Element {\r\n+    // return a React element of the custom node widget\r\n+    return <TSCustomNodeWidget engine={this.engine as DiagramEngine} node={event.model} />;\r\n+  }\r\n }\r\n"
+                },
+                {
+                    "date": 1707038458249,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n // import the necessary modules\r\n import * as React from 'react';\r\n-import { TSCustomNodeModel } from './TSCustomNodeModel';\r\n+import { TSCustomNodeModel2 } from './10';\r\n import { TSCustomNodeWidget } from './TSCustomNodeWidget';\r\n import { AbstractReactFactory } from '@projectstorm/react-canvas-core';\r\n import { DiagramEngine } from '@projectstorm/react-diagrams-core';\r\n \r\n@@ -15,9 +15,9 @@\n \r\n   // generateModel method\r\n   generateModel(initialConfig:any) {\r\n     // return a new instance of the custom node model\r\n-    return new TSCustomNodeModel();\r\n+    return new TSCustomNodeModel2();\r\n   }\r\n \r\n   // generateReactWidget method\r\n   generateReactWidget(event:any): JSX.Element {\r\n"
+                },
+                {
+                    "date": 1707038569470,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n // import the necessary modules\r\n import * as React from 'react';\r\n import { TSCustomNodeModel2 } from './10';\r\n-import { TSCustomNodeWidget } from './TSCustomNodeWidget';\r\n+import { TSCustomNodeWidget } from './12';\r\n import { AbstractReactFactory } from '@projectstorm/react-canvas-core';\r\n import { DiagramEngine } from '@projectstorm/react-diagrams-core';\r\n \r\n // define the custom node factory class\r\n"
+                },
+                {
+                    "date": 1707038581571,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n // import the necessary modules\r\n import * as React from 'react';\r\n import { TSCustomNodeModel2 } from './10';\r\n-import { TSCustomNodeWidget } from './12';\r\n+import { TSCustomNodeWidget2 } from './12';\r\n import { AbstractReactFactory } from '@projectstorm/react-canvas-core';\r\n import { DiagramEngine } from '@projectstorm/react-diagrams-core';\r\n \r\n // define the custom node factory class\r\n"
+                },
+                {
+                    "date": 1707038602169,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n import { AbstractReactFactory } from '@projectstorm/react-canvas-core';\r\n import { DiagramEngine } from '@projectstorm/react-diagrams-core';\r\n \r\n // define the custom node factory class\r\n-export class TSCustomNodeFactory extends AbstractReactFactory<TSCustomNodeModel, DiagramEngine> {\r\n+export class TSCustomNodeFactory extends AbstractReactFactory<TSCustomNodeModel2, DiagramEngine> {\r\n   // constructor method\r\n   constructor() {\r\n     // call the super constructor with the custom node type\r\n     super('ts-custom-node');\r\n@@ -21,7 +21,7 @@\n \r\n   // generateReactWidget method\r\n   generateReactWidget(event:any): JSX.Element {\r\n     // return a React element of the custom node widget\r\n-    return <TSCustomNodeWidget engine={this.engine as DiagramEngine} node={event.model} />;\r\n+    return <TSCustomNodeWidget2 engine={this.engine as DiagramEngine} node={event.model} />;\r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1707038693178,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n import { AbstractReactFactory } from '@projectstorm/react-canvas-core';\r\n import { DiagramEngine } from '@projectstorm/react-diagrams-core';\r\n \r\n // define the custom node factory class\r\n-export class TSCustomNodeFactory extends AbstractReactFactory<TSCustomNodeModel2, DiagramEngine> {\r\n+export class TSCustomNodeFactory2 extends AbstractReactFactory<TSCustomNodeModel2, DiagramEngine> {\r\n   // constructor method\r\n   constructor() {\r\n     // call the super constructor with the custom node type\r\n     super('ts-custom-node');\r\n"
+                },
+                {
+                    "date": 1707039884422,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n export class TSCustomNodeFactory2 extends AbstractReactFactory<TSCustomNodeModel2, DiagramEngine> {\r\n   // constructor method\r\n   constructor() {\r\n     // call the super constructor with the custom node type\r\n-    super('ts-custom-node');\r\n+    super('ts-custom-node-2');\r\n   }\r\n \r\n   // generateModel method\r\n   generateModel(initialConfig:any) {\r\n"
+                }
+            ],
+            "date": 1707036835717,
+            "name": "Commit-0",
+            "content": "// part 16\r\n// SVGFactory.js\r\n// import the necessary modules\r\nimport * as React from 'react';\r\nimport { AbstractReactFactory } from '@projectstorm/react-canvas-core';\r\nimport { SVGModel } from './SVGModel';\r\nimport { SVGWidget } from './SVGWidget';\r\n\r\n// define the SVGFactory class\r\nexport class SVGFactory extends AbstractReactFactory {\r\n    constructor() {\r\n        // initialize the SVGFactory with the svg type\r\n        super('svg');\r\n    }\r\n\r\n    // generate a new SVGModel instance\r\n    generateModel(initialConfig) {\r\n        return new SVGModel(initialConfig);\r\n    }\r\n\r\n    // generate a new SVGWidget instance\r\n    generateReactWidget(event) {\r\n        return <SVGWidget engine={this.engine} node={event.model} />;\r\n    }\r\n}\r\n"
+        }
+    ]
+}

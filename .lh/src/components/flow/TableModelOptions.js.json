@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/components/flow/TableModelOptions.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1707019822706,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1707019822706,
+            "name": "Commit-0",
+            "content": "// part 5\r\n// import the necessary modules\r\nimport { NodeModel, DefaultPortModel } from '@projectstorm/react-diagrams';\r\nimport { BaseModelOptions } from '@projectstorm/react-canvas-core';\r\n\r\n// define the table model options interface\r\nexport interface TableModelOptions extends BaseModelOptions {\r\n  name?: string;\r\n  values?: any[]; // json array\r\n  position?: { x: number; y: number };\r\n  color?: string;\r\n  cssClass?: string;\r\n  size?: { width: number; height: number };\r\n}\r\n\r\n// define the table model class\r\nexport class TableModel extends NodeModel {\r\n  // declare the class properties\r\n  name: string;\r\n  values: any[];\r\n  position: { x: number; y: number };\r\n  color: string;\r\n  cssClass: string;\r\n  size: { width: number; height: number };\r\n\r\n  constructor(options: TableModelOptions = {}) {\r\n    super({\r\n      ...options,\r\n      type: 'table'\r\n    });\r\n    this.name = options.name || 'Table';\r\n    this.values = options.values || [];\r\n    this.position = options.position || { x: 0, y: 0 };\r\n    this.color = options.color || 'white';\r\n    this.cssClass = options.cssClass || 'table';\r\n    this.size = options.size || { width: 100, height: 100 };\r\n\r\n    // add some ports to the table model\r\n    this.addPort(\r\n      new DefaultPortModel({\r\n        in: true,\r\n        name: 'IN'\r\n      })\r\n    );\r\n    this.addPort(\r\n      new DefaultPortModel({\r\n        in: false,\r\n        name: 'OUT'\r\n      })\r\n    );\r\n  }\r\n\r\n  // serialize method\r\n  serialize() {\r\n    return {\r\n      ...super.serialize(),\r\n      name: this.name,\r\n      values: this.values,\r\n      position: this.position,\r\n      color: this.color,\r\n      cssClass: this.cssClass,\r\n      size: this.size\r\n    };\r\n  }\r\n  deserialize(event:any): void {\r\n    super.deserialize(event);\r\n    this.name = event.data.name;\r\n    this.values = event.data.values;\r\n    this.position = event.data.position;\r\n    this.color = event.data.color;\r\n    this.cssClass = event.data.cssClass;\r\n    this.size = event.data.size;\r\n  }\r\n}"
+        }
+    ]
+}

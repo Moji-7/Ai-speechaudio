@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/components/flow/MyFlow.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1706936199839,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1706936199839,
+            "name": "Commit-0",
+            "content": "import React, { useEffect, useState } from \"react\";\r\nimport { DiagramEngine, DiagramModel, DefaultNodeModel, DefaultPortModel, LinkModel, DiagramWidget } from \"storm-react-diagrams\";\r\nimport axios from \"axios\";\r\n\r\nconst Diagram = () => {\r\n  const [diagramEngine, setDiagramEngine] = useState(null);\r\n  const [error, setError] = useState(null);\r\n\r\n  useEffect(() => {\r\n    fetchData();\r\n  }, []);\r\n\r\n  const fetchData = async () => {\r\n    try {\r\n      const response = await axios.get(\"https://api.example.com/diagram\");\r\n      const { nodes, links } = response.data;\r\n\r\n      const diagramModel = new DiagramModel();\r\n\r\n      // Create nodes\r\n      nodes.forEach((node) => {\r\n        const defaultNode = new DefaultNodeModel(node.label, \"rgb(0,192,255)\");\r\n        defaultNode.setPosition(node.x, node.y);\r\n\r\n        // Create ports for node\r\n        const inPort = defaultNode.addInPort(\"In\");\r\n        const outPort = defaultNode.addOutPort(\"Out\");\r\n\r\n        // Set custom styling for ports\r\n        inPort.setStyle({ background: \"rgb(0,192,255)\" });\r\n        outPort.setStyle({ background: \"rgb(0,192,255)\" });\r\n\r\n        diagramModel.addNode(defaultNode);\r\n      });\r\n\r\n      // Create connections\r\n      links.forEach((link) => {\r\n        const sourceNode = diagramModel.getNode(link.source);\r\n        const targetNode = diagramModel.getNode(link.target);\r\n\r\n        // Create links between ports\r\n        const linkModel = outPort.link(inPort);\r\n        diagramModel.addLink(linkModel);\r\n      });\r\n\r\n      const engine = new DiagramEngine();\r\n      engine.setModel(diagramModel);\r\n\r\n      setDiagramEngine(engine);\r\n    } catch (error) {\r\n      setError(\"Error fetching diagram data\");\r\n    }\r\n  };\r\n\r\n  const renderDiagram = () => {\r\n    if (!diagramEngine) return null;\r\n\r\n    return <DiagramWidget diagramEngine={diagramEngine} />;\r\n  };\r\n\r\n  return (\r\n    <div>\r\n      <h1>Diagram Example</h1>\r\n      {error ? (\r\n        <p>{error}</p>\r\n      ) : (\r\n        <>\r\n          {renderDiagram()}\r\n        </>\r\n      )}\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default Diagram;\r\n"
+        }
+    ]
+}

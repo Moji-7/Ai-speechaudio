@@ -1,0 +1,62 @@
+{
+    "sourceFile": "src/components/flow/TSCustomNodeModel.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 11,
+            "patches": [
+                {
+                    "date": 1706952503884,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1706958928386,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,35 +1,28 @@\n-// import the necessary modules\r\n import { NodeModel, DefaultPortModel, DefaultNodeModel } from '@projectstorm/react-diagrams';\r\n import { BaseModelOptions } from '@projectstorm/react-canvas-core';\r\n \r\n-// define the custom node model options interface\r\n export interface TSCustomNodeModelOptions extends BaseModelOptions {\r\n   color?: string;\r\n   value?: number;\r\n   name?: string;\r\n }\r\n \r\n-// define the custom node model class\r\n export class TSCustomNodeModel extends DefaultNodeModel {\r\n   // declare the class properties\r\n   color: string;\r\n   name: string;\r\n   value: number;\r\n \r\n-  // constructor method\r\n   constructor(options: TSCustomNodeModelOptions = {}) {\r\n-    // call the super constructor with the custom node type and options\r\n     super({\r\n       ...options,\r\n       type: 'ts-custom-node'\r\n     });\r\n-    // assign the options to the properties\r\n     this.color = options.color || 'red';\r\n     this.value = options.value || 0;\r\n     this.name = options.name || 'name';\r\n \r\n-    // setup an in and out port\r\n     this.addPort(\r\n       new DefaultPortModel({\r\n         in: true,\r\n         name: 'IN'\r\n@@ -44,19 +37,14 @@\n   }\r\n \r\n   // serialize method\r\n   serialize() {\r\n-    // return the serialized data of the custom node model\r\n     return {\r\n       ...super.serialize(),\r\n       color: this.color\r\n     };\r\n   }\r\n-\r\n-  // deserialize method\r\n   deserialize(event:any): void {\r\n-    // call the super deserialize method\r\n     super.deserialize(event);\r\n-    // assign the color from the event data\r\n     this.color = event.data.color;\r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1706962871801,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,8 +21,9 @@\n     this.color = options.color || 'red';\r\n     this.value = options.value || 0;\r\n     this.name = options.name || 'name';\r\n \r\n+\r\n     this.addPort(\r\n       new DefaultPortModel({\r\n         in: true,\r\n         name: 'IN'\r\n"
+                },
+                {
+                    "date": 1706963670557,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n export interface TSCustomNodeModelOptions extends BaseModelOptions {\r\n   color?: string;\r\n   value?: number;\r\n   name?: string;\r\n+  cssClass?: string; // added prop\r\n }\r\n \r\n export class TSCustomNodeModel extends DefaultNodeModel {\r\n   // declare the class properties\r\n"
+                },
+                {
+                    "date": 1706963699669,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,9 @@\n   // declare the class properties\r\n   color: string;\r\n   name: string;\r\n   value: number;\r\n+  cssClass: string; // added prop\r\n \r\n   constructor(options: TSCustomNodeModelOptions = {}) {\r\n     super({\r\n       ...options,\r\n@@ -21,8 +22,9 @@\n     });\r\n     this.color = options.color || 'red';\r\n     this.value = options.value || 0;\r\n     this.name = options.name || 'name';\r\n+    this.cssClass = options.cssClass || 'custom-node'; // added prop\r\n \r\n \r\n     this.addPort(\r\n       new DefaultPortModel({\r\n"
+                },
+                {
+                    "date": 1706963720296,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,9 +43,11 @@\n   // serialize method\r\n   serialize() {\r\n     return {\r\n       ...super.serialize(),\r\n-      color: this.color\r\n+      color: this.color;\r\n+      this.cssClass = event.data.cssClass; // added prop\r\n+\r\n     };\r\n   }\r\n   deserialize(event:any): void {\r\n     super.deserialize(event);\r\n"
+                },
+                {
+                    "date": 1706963745126,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,14 +43,14 @@\n   // serialize method\r\n   serialize() {\r\n     return {\r\n       ...super.serialize(),\r\n-      color: this.color;\r\n-      this.cssClass = event.data.cssClass; // added prop\r\n-\r\n+      color: this.color,\r\n+      cssClass: this.cssClass // added prop\r\n     };\r\n   }\r\n   deserialize(event:any): void {\r\n     super.deserialize(event);\r\n     this.color = event.data.color;\r\n+    this.cssClass = event.data.cssClass; // added prop\r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1706963873556,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n     });\r\n     this.color = options.color || 'red';\r\n     this.value = options.value || 0;\r\n     this.name = options.name || 'name';\r\n-    this.cssClass = options.cssClass || 'custom-node'; // added prop\r\n+    this.cssClass = options.cssClass || 'custom-node'; \r\n \r\n \r\n     this.addPort(\r\n       new DefaultPortModel({\r\n@@ -44,13 +44,13 @@\n   serialize() {\r\n     return {\r\n       ...super.serialize(),\r\n       color: this.color,\r\n-      cssClass: this.cssClass // added prop\r\n+      cssClass: this.cssClass\r\n     };\r\n   }\r\n   deserialize(event:any): void {\r\n     super.deserialize(event);\r\n     this.color = event.data.color;\r\n-    this.cssClass = event.data.cssClass; // added prop\r\n+    this.cssClass = event.data.cssClass; \r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1706963921748,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,17 +4,17 @@\n export interface TSCustomNodeModelOptions extends BaseModelOptions {\r\n   color?: string;\r\n   value?: number;\r\n   name?: string;\r\n-  cssClass?: string; // added prop\r\n+  cssClass?: string; \r\n }\r\n \r\n export class TSCustomNodeModel extends DefaultNodeModel {\r\n   // declare the class properties\r\n   color: string;\r\n   name: string;\r\n   value: number;\r\n-  cssClass: string; // added prop\r\n+  cssClass: string;\r\n \r\n   constructor(options: TSCustomNodeModelOptions = {}) {\r\n     super({\r\n       ...options,\r\n"
+                },
+                {
+                    "date": 1707048294635,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,17 +1,17 @@\n import { NodeModel, DefaultPortModel, DefaultNodeModel } from '@projectstorm/react-diagrams';\r\n import { BaseModelOptions } from '@projectstorm/react-canvas-core';\r\n \r\n export interface TSCustomNodeModelOptions extends BaseModelOptions {\r\n-  color?: string;\r\n+  //color?: string;\r\n   value?: number;\r\n   name?: string;\r\n   cssClass?: string; \r\n }\r\n \r\n export class TSCustomNodeModel extends DefaultNodeModel {\r\n   // declare the class properties\r\n-  color: string;\r\n+  //color: string;\r\n   name: string;\r\n   value: number;\r\n   cssClass: string;\r\n \r\n@@ -43,14 +43,14 @@\n   // serialize method\r\n   serialize() {\r\n     return {\r\n       ...super.serialize(),\r\n-      color: this.color,\r\n+     // color: this.color,\r\n       cssClass: this.cssClass\r\n     };\r\n   }\r\n   deserialize(event:any): void {\r\n     super.deserialize(event);\r\n-    this.color = event.data.color;\r\n+    //this.color = event.data.color;\r\n     this.cssClass = event.data.cssClass; \r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1707048313145,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n     super({\r\n       ...options,\r\n       type: 'ts-custom-node'\r\n     });\r\n-    this.color = options.color || 'red';\r\n+   // this.color = options.color || 'red';\r\n     this.value = options.value || 0;\r\n     this.name = options.name || 'name';\r\n     this.cssClass = options.cssClass || 'custom-node'; \r\n \r\n"
+                },
+                {
+                    "date": 1707048318865,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,17 +1,17 @@\n import { NodeModel, DefaultPortModel, DefaultNodeModel } from '@projectstorm/react-diagrams';\r\n import { BaseModelOptions } from '@projectstorm/react-canvas-core';\r\n \r\n export interface TSCustomNodeModelOptions extends BaseModelOptions {\r\n-  //color?: string;\r\n+  color?: string;\r\n   value?: number;\r\n   name?: string;\r\n   cssClass?: string; \r\n }\r\n \r\n export class TSCustomNodeModel extends DefaultNodeModel {\r\n   // declare the class properties\r\n-  //color: string;\r\n+  color: string;\r\n   name: string;\r\n   value: number;\r\n   cssClass: string;\r\n \r\n@@ -19,9 +19,9 @@\n     super({\r\n       ...options,\r\n       type: 'ts-custom-node'\r\n     });\r\n-   // this.color = options.color || 'red';\r\n+    this.color = options.color || '';\r\n     this.value = options.value || 0;\r\n     this.name = options.name || 'name';\r\n     this.cssClass = options.cssClass || 'custom-node'; \r\n \r\n@@ -43,14 +43,14 @@\n   // serialize method\r\n   serialize() {\r\n     return {\r\n       ...super.serialize(),\r\n-     // color: this.color,\r\n+      color: this.color,\r\n       cssClass: this.cssClass\r\n     };\r\n   }\r\n   deserialize(event:any): void {\r\n     super.deserialize(event);\r\n-    //this.color = event.data.color;\r\n+    this.color = event.data.color;\r\n     this.cssClass = event.data.cssClass; \r\n   }\r\n }\r\n"
+                }
+            ],
+            "date": 1706952503884,
+            "name": "Commit-0",
+            "content": "// import the necessary modules\r\nimport { NodeModel, DefaultPortModel, DefaultNodeModel } from '@projectstorm/react-diagrams';\r\nimport { BaseModelOptions } from '@projectstorm/react-canvas-core';\r\n\r\n// define the custom node model options interface\r\nexport interface TSCustomNodeModelOptions extends BaseModelOptions {\r\n  color?: string;\r\n  value?: number;\r\n  name?: string;\r\n}\r\n\r\n// define the custom node model class\r\nexport class TSCustomNodeModel extends DefaultNodeModel {\r\n  // declare the class properties\r\n  color: string;\r\n  name: string;\r\n  value: number;\r\n\r\n  // constructor method\r\n  constructor(options: TSCustomNodeModelOptions = {}) {\r\n    // call the super constructor with the custom node type and options\r\n    super({\r\n      ...options,\r\n      type: 'ts-custom-node'\r\n    });\r\n    // assign the options to the properties\r\n    this.color = options.color || 'red';\r\n    this.value = options.value || 0;\r\n    this.name = options.name || 'name';\r\n\r\n    // setup an in and out port\r\n    this.addPort(\r\n      new DefaultPortModel({\r\n        in: true,\r\n        name: 'IN'\r\n      })\r\n    );\r\n    this.addPort(\r\n      new DefaultPortModel({\r\n        in: false,\r\n        name: 'OUT'\r\n      })\r\n    );\r\n  }\r\n\r\n  // serialize method\r\n  serialize() {\r\n    // return the serialized data of the custom node model\r\n    return {\r\n      ...super.serialize(),\r\n      color: this.color\r\n    };\r\n  }\r\n\r\n  // deserialize method\r\n  deserialize(event:any): void {\r\n    // call the super deserialize method\r\n    super.deserialize(event);\r\n    // assign the color from the event data\r\n    this.color = event.data.color;\r\n  }\r\n}\r\n"
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/components/flow/TSCustomNodeFactory.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1706952621929,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1706959279080,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,12 +13,12 @@\n     super('ts-custom-node');\r\n   }\r\n \r\n   // generateModel method\r\n-  generateModel(initialConfig:any) {\r\n-    // return a new instance of the custom node model\r\n-    return new TSCustomNodeModel();\r\n-  }\r\n+//   generateModel(initialConfig:any) {\r\n+//     // return a new instance of the custom node model\r\n+//     return new TSCustomNodeModel();\r\n+//   }\r\n \r\n   // generateReactWidget method\r\n   generateReactWidget(event:any): JSX.Element {\r\n     // return a React element of the custom node widget\r\n"
+                },
+                {
+                    "date": 1706959290109,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,12 +13,12 @@\n     super('ts-custom-node');\r\n   }\r\n \r\n   // generateModel method\r\n-//   generateModel(initialConfig:any) {\r\n-//     // return a new instance of the custom node model\r\n-//     return new TSCustomNodeModel();\r\n-//   }\r\n+  generateModel(initialConfig:any) {\r\n+    // return a new instance of the custom node model\r\n+    return new TSCustomNodeModel();\r\n+  }\r\n \r\n   // generateReactWidget method\r\n   generateReactWidget(event:any): JSX.Element {\r\n     // return a React element of the custom node widget\r\n"
+                }
+            ],
+            "date": 1706952621929,
+            "name": "Commit-0",
+            "content": "// import the necessary modules\r\nimport * as React from 'react';\r\nimport { TSCustomNodeModel } from './TSCustomNodeModel';\r\nimport { TSCustomNodeWidget } from './TSCustomNodeWidget';\r\nimport { AbstractReactFactory } from '@projectstorm/react-canvas-core';\r\nimport { DiagramEngine } from '@projectstorm/react-diagrams-core';\r\n\r\n// define the custom node factory class\r\nexport class TSCustomNodeFactory extends AbstractReactFactory<TSCustomNodeModel, DiagramEngine> {\r\n  // constructor method\r\n  constructor() {\r\n    // call the super constructor with the custom node type\r\n    super('ts-custom-node');\r\n  }\r\n\r\n  // generateModel method\r\n  generateModel(initialConfig:any) {\r\n    // return a new instance of the custom node model\r\n    return new TSCustomNodeModel();\r\n  }\r\n\r\n  // generateReactWidget method\r\n  generateReactWidget(event:any): JSX.Element {\r\n    // return a React element of the custom node widget\r\n    return <TSCustomNodeWidget engine={this.engine as DiagramEngine} node={event.model} />;\r\n  }\r\n}\r\n"
+        }
+    ]
+}

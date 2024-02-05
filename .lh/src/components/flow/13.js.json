@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/components/flow/13.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1707037177757,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1707037177757,
+            "name": "Commit-0",
+            "content": "// part 18\r\n// SVGPortModel.js\r\n// import the necessary modules\r\nimport { PortModel, DefaultLinkModel } from '@projectstorm/react-diagrams';\r\n\r\n// define the SVGPortModel class\r\nexport class SVGPortModel extends PortModel {\r\n    constructor(options = {}) {\r\n        // initialize the SVGPortModel with the given options\r\n        super({\r\n            ...options,\r\n            type: 'svg-port'\r\n        });\r\n    }\r\n\r\n    // create a new link from this port\r\n    createLinkModel() {\r\n        return new DefaultLinkModel();\r\n    }\r\n}\r\n"
+        }
+    ]
+}

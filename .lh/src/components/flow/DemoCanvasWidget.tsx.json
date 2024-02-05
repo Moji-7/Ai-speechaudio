@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/components/flow/DemoCanvasWidget.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1706954091405,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1706954091405,
+            "name": "Commit-0",
+            "content": "import * as React from 'react';\r\nimport styled from '@emotion/styled';\r\nimport { css, Global } from '@emotion/react';\r\n\r\nexport interface DemoCanvasWidgetProps {\r\n\tcolor?: string;\r\n\tbackground?: string;\r\n}\r\n\r\nnamespace S {\r\n\texport const Container = styled.div<{ color: string; background: string }>`\r\n\t\theight: 100%;\r\n\t\tbackground-color: ${(p) => p.background};\r\n\t\tbackground-size: 50px 50px;\r\n\t\tdisplay: flex;\r\n\r\n\t\t> * {\r\n\t\t\theight: 100%;\r\n\t\t\tmin-height: 100%;\r\n\t\t\twidth: 100%;\r\n\t\t}\r\n\r\n\t\tbackground-image: linear-gradient(\r\n\t\t\t\t0deg,\r\n\t\t\t\ttransparent 24%,\r\n\t\t\t\t${(p) => p.color} 25%,\r\n\t\t\t\t${(p) => p.color} 26%,\r\n\t\t\t\ttransparent 27%,\r\n\t\t\t\ttransparent 74%,\r\n\t\t\t\t${(p) => p.color} 75%,\r\n\t\t\t\t${(p) => p.color} 76%,\r\n\t\t\t\ttransparent 77%,\r\n\t\t\t\ttransparent\r\n\t\t\t),\r\n\t\t\tlinear-gradient(\r\n\t\t\t\t90deg,\r\n\t\t\t\ttransparent 24%,\r\n\t\t\t\t${(p) => p.color} 25%,\r\n\t\t\t\t${(p) => p.color} 26%,\r\n\t\t\t\ttransparent 27%,\r\n\t\t\t\ttransparent 74%,\r\n\t\t\t\t${(p) => p.color} 75%,\r\n\t\t\t\t${(p) => p.color} 76%,\r\n\t\t\t\ttransparent 77%,\r\n\t\t\t\ttransparent\r\n\t\t\t);\r\n\t`;\r\n\r\n\texport const Expand = css`\r\n\t\thtml,\r\n\t\tbody,\r\n\t\t#root {\r\n\t\t\theight: 100%;\r\n\t\t}\r\n\t`;\r\n}\r\n\r\nexport class DemoCanvasWidget extends React.Component<React.PropsWithChildren<DemoCanvasWidgetProps>> {\r\n\trender() {\r\n\t\treturn (\r\n\t\t\t<>\r\n\t\t\t\t<Global styles={S.Expand} />\r\n\t\t\t\t<S.Container\r\n\t\t\t\t\tbackground={this.props.background || 'rgb(60, 60, 60)'}\r\n\t\t\t\t\tcolor={this.props.color || 'rgba(255,255,255, 0.05)'}\r\n\t\t\t\t>\r\n\t\t\t\t\t{this.props.children}\r\n\t\t\t\t</S.Container>\r\n\t\t\t</>\r\n\t\t);\r\n\t}\r\n}"
+        }
+    ]
+}
