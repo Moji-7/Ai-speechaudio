@@ -5,7 +5,9 @@ export interface TSCustomNodeModelOptions extends BaseModelOptions {
   value?: string;
   name?: string;
   nodeId?: string;
-  cssClass?: string; 
+  color?: string;
+  cssClass?: string;
+  size?: { width: number; height: number };
 }
 
 export class TSCustomNodeModel2 extends DefaultNodeModel {
@@ -13,31 +15,22 @@ export class TSCustomNodeModel2 extends DefaultNodeModel {
   name: string;
   value?: string;
   nodeId?: string;
+  color: string;
   cssClass: string;
+  size: { width: number; height: number };
 
   constructor(options: TSCustomNodeModelOptions = {}) {
     super({
       ...options,
-      type: 'ts-custom-node'
+      type: 'ts-custom-node-2'
     });
     this.value = options.value;
     this.name = options.name || 'svg';
-    this.nodeId = options.nodeId || '';
-    this.cssClass = options.cssClass || 'custom-node'; 
+    this.nodeId = options.nodeId || ''; 
+    this.color = options.color || 'white';
+    this.cssClass = options.cssClass || 'custom-me';
+    this.size = options.size || { width: 110, height: 110 };
 
-
-    this.addPort(
-      new DefaultPortModel({
-        in: true,
-        name: 'IN'
-      })
-    );
-    this.addPort(
-      new DefaultPortModel({
-        in: false,
-        name: 'OUT'
-      })
-    );
   }
 
   // serialize method

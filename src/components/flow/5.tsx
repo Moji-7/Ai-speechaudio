@@ -6,6 +6,7 @@ import { BaseModelOptions } from '@projectstorm/react-canvas-core';
 // define the table model options interface
 export interface TableModelOptions extends BaseModelOptions {
   name?: string;
+  title?:string;
    nodeId?: string;
   values?: any[]; // json array
  // position?: { x: number; y: number };
@@ -18,9 +19,10 @@ export interface TableModelOptions extends BaseModelOptions {
 export class TableModel extends NodeModel {
   // declare the class properties
   name: string;
+  title?:string;
   nodeId: string;
   values: any[];
- // position: { x: number; y: number };
+  //position: { x: number; y: number };
   color: string;
   cssClass: string;
   size: { width: number; height: number };
@@ -31,12 +33,13 @@ export class TableModel extends NodeModel {
       type: 'table'
     });
     this.name = options.name || 'Table';
+    this.title = options.title || '';
     this.nodeId = options.nodeId || '';
     this.values = options.values || [];
-   // this.position = options.position || { x: 0, y: 0 };
+    //this.position = options.position || { x: 0, y: 0 };
     this.color = options.color || 'white';
-    this.cssClass = options.cssClass || 'table';
-    this.size = options.size || { width: 100, height: 100 };
+    this.cssClass = options.cssClass || 'table-me';
+    this.size = options.size || { width: 110, height: 190 };
 
     // add some ports to the table model
     // this.addPort(

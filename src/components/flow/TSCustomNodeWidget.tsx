@@ -27,18 +27,20 @@ export class TSCustomNodeWidget extends React.Component<TSCustomNodeWidgetProps,
     render() {
         // return a JSX element with the custom node widget
         return (
-            <div className={'custom-node'}> 
+            <>
+            <div className={'custom-node'}>  </div>
                 <PortWidget engine={this.props.engine} port={this.props.node.getPort?.('IN') || new DefaultPortModel({ in: true, name: 'IN' })}>
-                    <div className="circle-port" />
+                    {/* <div className="circle-port" /> */}
                 </PortWidget>
                 <PortWidget engine={this.props.engine} port={this.props.node.getPort?.('OUT') || new DefaultPortModel({ in: false, name: 'OUT' })}>
-                    <div className="circle-port" />
+                    {/* <div className="circle-port" /> */}
                 </PortWidget>
                 <div className={this.props.node.cssClass} > 
                 {/* style={{ backgroundColor: this.props.node.color }} */}
                     {this.props.node.value}
                 </div>
-            </div>
+           
+            </>
         );
     }
 }

@@ -1,25 +1,39 @@
+.arrow-top {
+  background-image: url("statics/arrow-top.svg");
+}
 
+.arrow-below {
+  background-size: contain;
 
+  width: 55px;
+  height: 55px;
 
+  background-image: url("statics/arrow-below.svg");
+}
 
- .arrow-top {
-   background-size: contain;
-    background-image: url('statics/arrow-top.svg');
-    display: block;
-  }
-  
- .arrow-below  {
-   background-size: contain;
-    background-image: url('statics/arrow-below.svg');
-  }
-  
- .arrow-right  {
-   background-size: contain;
-    background-image: url('statics/arrow-right.svg');
-  }
-  
- .arrow-left  {
-   background-size: contain;
-    background-image: url('statics/arrow-left.svg');
-  }
-  
+.arrow-right {
+  background-image: url("statics/arrow-right.svg");
+}
+
+.arrow-left {
+  background-image: url("statics/arrow-left.svg");
+  background-size: contain;
+
+  width: 55px;
+  height: 55px;
+
+}
+
+.arrow-leftppp {
+  background-size: contain;
+  display: block;
+  align-items: center;
+  justify-content: center;
+  width: 110px;
+  height: 110px;
+  background-image: url("statics/arrow-left.svg");
+}
+/* .custom-me {
+  background-color: brown;
+  color: black;
+} */

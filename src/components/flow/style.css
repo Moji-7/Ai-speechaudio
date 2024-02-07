@@ -1,45 +1,46 @@
+.custom-node {
 
+  align-items: center;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
 
+}
 
+.circle-node {
+  background-size: contain;
+  width: 110px;
+  height: 110px;
+  display: flex;
 
+  align-items: center;
+  background-image: url("statics/shape-a.svg");
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
 
-  .custom-node {
-  
- 
-       display: flex;
-   
-    align-items: center;
-    align-items: center; 
-    justify-content: center;
-    font-weight: bold;
-  }
-  
-  .custom-node-color {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-  }
-  
-  .circle-node {
-    background-size: contain;
-      width: 200px; 
-           height: 200px; 
-      display: flex;
+.triangle-node {
+  background-size: contain;
+  width: 110px;
+  height: 110px;
+  display: flex;
 
-    align-items: center;
-    background-image: url('statics/shape-a.svg');  align-items: center;
-    justify-content: center;
-    font-weight: bold;
-  }
-  
-  .triangle-node {
-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-  }
-  
-  .pentagon-node {
-    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
-  }
-  
+  align-items: center;
+  background-image: url("statics/shape-a.svg");
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+.circle-port {
+  width: 20px;
+  height: 20px;
+  background-color: blueviolet;
+  background-image: url("statics/arrow-right.svg");
+  align-items: center;
+}
+
+.pentagon-node {
+  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+}
+
